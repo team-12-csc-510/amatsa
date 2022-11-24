@@ -32,7 +32,7 @@ POST _security/role/admin
         "amatsa"
       ],
       "privileges": [
-        "*",
+        "all"
       ],
       "allow_restricted_indices": false
     }
@@ -41,7 +41,7 @@ POST _security/role/admin
     {
       "application": "kibana-.kibana",
       "privileges": [
-        "*"
+        "all"
       ],
       "resources": [
         "*"
