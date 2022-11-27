@@ -29,7 +29,6 @@ jobs:
 
       - name: Code quality checks
         run: |
-#            source $VENV
             isort --check-only --profile black .
             black --check .
             flake8 --ignore D203 --exclude .venv,.git,__pycache__,docs/source/conf.py,old,build,dist --max-complexity 12 --max-line-length=88
