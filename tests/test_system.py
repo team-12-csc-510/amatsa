@@ -1,13 +1,16 @@
 """Tests for the System module"""
 from src.system import System
 
+
 def test_system_init():
     success = True
     try:
         _ = System()
-    except: # pylint: disable=bare-except
+    except Exception as e:
+        print(e)
         success = False
     assert success, "Failed to initialize System()"
+
 
 def test_system_data():
     success = True
@@ -21,9 +24,11 @@ def test_system_data():
                 success = False
             else:
                 print(f"{k}:{v}, type:{type(v)}")
-    except: # pylint: disable=bare-except
+    except Exception as e:
+        print(e)
         success = False
     assert success, "Failed to collect system info"
+
 
 def test_system_metrics():
     success = True
@@ -40,6 +45,7 @@ def test_system_metrics():
                 success = False
             else:
                 print(f"{k}:{v}, type:{type(v)}")
-    except: # pylint: disable=bare-except
+    except Exception as e:
+        print(e)
         success = False
     assert success, "Failed to collect system metrics"

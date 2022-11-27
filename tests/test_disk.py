@@ -1,11 +1,13 @@
 """Tests for the Disk module"""
 from src.disk import Disk
 
+
 def test_disk_init():
     success = True
     try:
         _ = Disk()
-    except: # pylint: disable=bare-except
+    except Exception as e:
+        print(e)
         success = False
     assert success, "Failed to initialize Data()"
 
@@ -15,15 +17,26 @@ def test_disk_datatype():
     try:
         disk = Disk()
         data = disk.retrieve_disk_info()
-    except: # pylint: disable=bare-except
-        print("Failed to collect Data metrics")
+    except Exception as e:
+        print("Failed to collect Data metrics", e)
         success = False
     num = (float, int)
-    data_types = {"name" : str, "type" : str, "total_size" : num, "used" : num, "free" : num, "percentage" : num}
+    data_types = {
+        "name": str,
+        "type": str,
+        "total_size": num,
+        "used": num,
+        "free": num,
+        "percentage": num,
+    }
     for each in data:
         for field in each.keys():
-            if not isinstance(each[field], data_types[field]) :
-                print(f"For data '{field}', type should be {data_types[field]}, not {type(each[field])}")
+            if not isinstance(each[field], data_types[field]):  # type: ignore
+                print(
+                    f"For data '{field}', "
+                    f"type should be {data_types[field]}, "
+                    f"not {type(each[field])}"
+                )
                 success = False
     assert success
 
@@ -33,8 +46,8 @@ def test_disk_values():
     try:
         disk = Disk()
         data = disk.retrieve_disk_info()
-    except: # pylint: disable=bare-except
-        print("Failed to collect Data metrics")
+    except Exception as e:
+        print("Failed to collect Data metrics", e)
         success = False
     fields = ["total_size", "used", "free", "percentage"]
     for each in data:
@@ -47,15 +60,43 @@ def test_disk_values():
 
 def test_disk_darwin_sum():
     success = True
-    to_summarize_data = {"disk" : [{"name": "/dev/disk1s1s1", "type": "apfs", "total_size": 10, "used": 2, "free": 8, "percentage": 2},
-                                   {"name": "/dev/disk1s2", "type": "apfs", "total_size": 10, "used": 2, "free": 8, "percentage": 2}]}
-    data_to_be_returned = [{"name": "/dev/disk1", "type": "apfs", "total_size": 10, "used": 2, "free": 8, "percentage": 20.0}]
+    to_summarize_data = {
+        "disk": [
+            {
+                "name": "/dev/disk1s1s1",
+                "type": "apfs",
+                "total_size": 10,
+                "used": 2,
+                "free": 8,
+                "percentage": 2,
+            },
+            {
+                "name": "/dev/disk1s2",
+                "type": "apfs",
+                "total_size": 10,
+                "used": 2,
+                "free": 8,
+                "percentage": 2,
+            },
+        ]
+    }
+    data_to_be_returned = [
+        {
+            "name": "/dev/disk1",
+            "type": "apfs",
+            "total_size": 10,
+            "used": 2,
+            "free": 8,
+            "percentage": 20.0,
+        }
+    ]
     try:
         disk = Disk()
         data = disk.format_darwin(to_summarize_data)
         if data != data_to_be_returned:
             print("format_darwin() not function as desired")
             success = False
-    except : # pylint: disable=bare-except
+    except Exception as e:
+        print(e)
         success = False
     assert success
