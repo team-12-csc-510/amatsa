@@ -1,4 +1,4 @@
 """setup.py"""
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup  # type: ignore
 
-setup(name='amatsa-client', version='1.0.0', packages=find_packages())
+setup(name="amatsa-client", version="1.0.0", packages=find_packages())

@@ -2,32 +2,38 @@
 name: Build
 
 # Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events for the "main" branch
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [push]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
+    name: Build App
+    environment: dev
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.9", "3.10" ]
     steps:
-               
+
       - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '^3.9'
+
       - name: Install Python Dependencies
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install -e .
-      - name: Run linter on src directory
+
+      - name: Code quality checks
         run: |
-          pylint --rcfile=pylintrc src
+            isort --check-only --profile black .
+            black --check .
+            flake8 --ignore D203 --exclude .venv,.git,__pycache__,docs/source/conf.py,old,build,dist --max-complexity 12 --max-line-length=88 --extend-ignore=E203
+            mypy src/*
+            mypy tests/*
 
       - name: Run tests and coverage report
         run: |       
@@ -35,11 +41,11 @@ jobs:
           coverage xml --data-file tests/.coverage -o tests/coverage.xml
           coverage report --data-file tests/.coverage -m
           
-      - name : Send coverage report
-        run: |
-          pip install codacy-coverage
-          export CODACY_PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}
-          export CODACY_API_TOKEN=${{ secrets.CODACY_API_TOKEN }}
-          export CODACY_USERNAME=VSangarya
-          export CODAY_PROJECT_NAME=AMATSA
-          python-codacy-coverage -r tests/coverage.xml
+#      - name : Send coverage report
+#        run: |
+#          pip install codacy-coverage
+#          export CODACY_PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}
+#          export CODACY_API_TOKEN=${{ secrets.CODACY_API_TOKEN }}
+#          export CODACY_USERNAME=VSangarya
+#          export CODAY_PROJECT_NAME=AMATSA
+#          python-codacy-coverage -r tests/coverage.xml

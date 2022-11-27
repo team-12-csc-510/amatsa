@@ -1,18 +1,22 @@
 #!/usr/bin/python
-"""This module fetches network information and returns a JSON with the network info data"""
-#pylint: disable=consider-using-f-string
-import socket
-import speedtest
+"""
+This module fetches network information and returns a JSON with the network info data
+"""
+# pylint: disable=consider-using-f-string
 import datetime
+import socket
 from urllib.request import urlopen
 from uuid import getnode as get_mac
+
 import psutil
+import speedtest  # type: ignore
 
 UNKNOWN = "unknown"
 
 
 class Network:
     """Class to fetch, format and return network information"""
+
     mac_address = None
     ip_address = None
     hostname = None
@@ -31,15 +35,16 @@ class Network:
     def connect_status(self):
         try:
             host = "http://google.com"
-            with urlopen(host): # Python 3.x
+            with urlopen(host):  # Python 3.x
                 self.connection_status = True
-        except: #pylint: disable=bare-except
+        except Exception as e:
+            print(e)
             self.connection_status = False
 
     def get_network_info(self):
         self.connect_status()
         mac = get_mac()
-        self.mac_address =":".join(("%012X" % mac)[i:i+2] for i in range(0, 12, 2))
+        self.mac_address = ":".join(("%012X" % mac)[i : i + 2] for i in range(0, 12, 2))
         if not self.mac_address:
             self.mac_address = UNKNOWN
 
@@ -53,10 +58,8 @@ class Network:
         if self.connection_status:
             self.speed_test = speedtest.Speedtest(secure=1)
             self.time_now = datetime.datetime.now().strftime("%H:%M:%S")
-            self.down_speed = round(round(self.speed_test.download())
-                                   / 1048576, 2)
-            self.up_speed = round(round(self.speed_test.upload())
-                                 / 1048576, 2)
+            self.down_speed = round(round(self.speed_test.download()) / 1048576, 2)
+            self.up_speed = round(round(self.speed_test.upload()) / 1048576, 2)
         else:
             self.down_speed = UNKNOWN
             self.up_speed = UNKNOWN
@@ -65,7 +68,10 @@ class Network:
         self.connected_interface = UNKNOWN
         prefixes = ["169.254", "127."]
         for intface, addr_list in self.addresses.items():
-            if any(getattr(addr, "address").startswith(tuple(prefixes)) for addr in addr_list):
+            if any(
+                getattr(addr, "address").startswith(tuple(prefixes))
+                for addr in addr_list
+            ):
                 continue
             elif intface in self.stats and getattr(self.stats[intface], "isup"):
                 self.connected_interface = intface
@@ -79,4 +85,3 @@ class Network:
         json["down_speed"] = self.down_speed
         json["up_speed"] = self.up_speed
         json["time_now"] = self.time_now
-        

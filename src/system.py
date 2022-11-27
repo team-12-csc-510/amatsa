@@ -1,18 +1,21 @@
 """File contains definition for System class"""
 
-
 import platform
-import psutil
 import sys
 import time
 import uuid
 from datetime import datetime
+
+import psutil
+
 from src.utils import size_in_gb
 
 UNKNOWN = "unknown"
 
+
 class System:
     """Defines methods to retrieve machine info"""
+
     hostname = None
     bios_uuid = None
     platform_name = None
@@ -37,7 +40,9 @@ class System:
         # platform - Windows, Linux, Darwin etc.
         # release - NT, 2.2.0, 21.6.0
         # version - kernel version number
-        (self.platform_name, self.release, self.version) = platform.system_alias(platform.system(), platform.release(), platform.version())
+        (self.platform_name, self.release, self.version) = platform.system_alias(
+            platform.system(), platform.release(), platform.version()
+        )
         if not self.platform_name:
             self.platform_name = UNKNOWN
         if not self.release:
@@ -56,18 +61,18 @@ class System:
         # physical cpu cores
         self.physical_cores = psutil.cpu_count(logical=False)
         if not self.physical_cores:
-            self.physical_cores = UNKNOWN
+            self.physical_cores = UNKNOWN  # type: ignore
 
         # logical cpu cores
         self.logical_cores = psutil.cpu_count(logical=True)
         if not self.logical_cores:
-            self.logical_cores = UNKNOWN
+            self.logical_cores = UNKNOWN  # type: ignore
 
         # physical memory
         mem = psutil.virtual_memory()
         self.total_memory = size_in_gb(mem.total)
         if not self.total_memory:
-            self.total_memory = UNKNOWN
+            self.total_memory = UNKNOWN  # type: ignore
 
     def FillSystemInfo(self, json: dict):
         """This method fills the colelcted system info from the object's attributes"""
@@ -85,7 +90,9 @@ class System:
     def FillSystemMetrics(self, json: dict):
         """This method fills system information that is more prone to change"""
         # cpu utilization in %
-        cpu_load = [x/self.logical_cores * 100 for x in psutil.getloadavg()]
+        cpu_load = [
+            x / self.logical_cores * 100 for x in psutil.getloadavg()  # type: ignore
+        ]
         json["cpu_load_5min"] = round(cpu_load[1], 2)
         json["cpu_load_15min"] = round(cpu_load[2], 2)
 

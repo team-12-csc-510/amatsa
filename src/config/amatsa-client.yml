@@ -1,12 +1,12 @@
 version:  "1.0.0"
 
 connect:
-  endpoint: "https://XXX.XXX.XXX.XXX:XX"
-  tls-fingerprint: "<put-your-tls-fingerprint>"
+  endpoint: "http://localhost:9200"
+  scheme: "http"
 
 auth:
-  username: "username"
-  password: "password"
+  username: "elastic"
+  password: "changeme"
 
 index:
   name: amatsa

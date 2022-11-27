@@ -1,27 +1,34 @@
 """This module fetches disk information and returns a JSON with the disk data"""
-import psutil
-from src.utils import size_in_gb
-from src.system import System
 import re
+
+import psutil
+
+from src.system import System
+from src.utils import size_in_gb
+
 
 class Disk:
     """Class to fetch, format and return disk information"""
+
     def __init__(self):
         self.data = {}
         self.sys = System()
 
-
     def check_attr(self, attr, val):
-        """Check whether attribute for object present, if present, call and return data"""
+        """
+        Check whether attribute for object present, if present, call and return data
+        """
         try:
             val = getattr(attr, val)
-        except: # pylint: disable=bare-except
+        except Exception as e:
+            print(e)
             val = None
         return val
 
-
     def format_darwin(self, data):
-        """Format disk data for MacOS, summarize all paritions into the disk it belons to"""
+        """Format disk data for MacOS,
+        summarize all paritions into the disk it belons to
+        """
         disk_nums = [[] for i in range(len(data["disk"]))]
         for i in range(0, len(disk_nums)):
             result = re.search(r"/dev/disk(\d+)s", data["disk"][i]["name"])
@@ -37,22 +44,21 @@ class Disk:
             total_size = each_disk[0]["total_size"]
             used = each_disk[0]["used"]
             free = each_disk[0]["free"]
-            name = "/dev/disk"+str(each_disk[0]["number"])
+            name = "/dev/disk" + str(each_disk[0]["number"])
             type_disk = each_disk[0]["type"]
-            percentage = round((used/total_size)*100, 2)
+            percentage = round((used / total_size) * 100, 2)
 
             summed_disk = {
-                "name" : name,
-                "type" : type_disk,
-                "total_size" : total_size,
-                "used" : used,
-                "free" : free,
-                "percentage" : percentage
+                "name": name,
+                "type": type_disk,
+                "total_size": total_size,
+                "used": used,
+                "free": free,
+                "percentage": percentage,
             }
 
             final_disk.append(summed_disk)
         return final_disk
-
 
     def retrieve_disk_info(self):
         """Retrive disk information, format and return it"""
@@ -71,7 +77,7 @@ class Disk:
 
             self.data["disk"].append(each_disk)
 
-        if self.sys.platform_name == "Darwin" :
+        if self.sys.platform_name == "Darwin":
             self.data["disk"] = self.format_darwin(self.data)
 
         return self.data["disk"]
