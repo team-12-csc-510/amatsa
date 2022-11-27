@@ -61,13 +61,13 @@ if __name__ == "__main__":
     token = (config["auth"]["username"], config["auth"]["password"])
     if not CollectMetrics(client_json):
         sys.exit(1)
-    client_json = json.dumps(client_json, indent=2)
+    # client_json = json.dumps(client_json, indent=2)
     print("final_json", client_json)
     try:
         # push to elastic
         hosts_config = config["connect"]["endpoint"]
-        ssl_fingerprint = config["connect"]["tls-fingerprint"]
-        es = Elasticsearch(hosts=hosts_config, ssl_assert_fingerprint=ssl_fingerprint, basic_auth=token)
+        # ssl_fingerprint = config["connect"]["tls-fingerprint"]
+        es = Elasticsearch(hosts=hosts_config, verify_certs=False, basic_auth=token)
         resp = es.index(index=config["index"]["name"], document=client_json)
     except ValueError:
         print("Failed to send data to backend", file=sys.stderr)
