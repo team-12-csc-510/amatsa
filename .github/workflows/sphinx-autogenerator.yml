@@ -30,6 +30,7 @@ jobs:
                   cd docs/
                   make html
                   cd ..
+                  git config advice.addIgnoredFile false
                   git config --global user.name "qureshi-ali"
                   git config --global user.email "qureshi.ali@outlook.com"
                   git add docs/*
