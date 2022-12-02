@@ -1,9 +1,9 @@
 """This module fetches GPU information and returns a JSON with the GPU data"""
 import logging
-
-import GPUtil  # type: ignore
 import sys
 import time
+
+import GPUtil  # type: ignore
 
 
 class GPUdata:

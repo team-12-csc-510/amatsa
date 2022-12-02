@@ -4,12 +4,12 @@ This module fetches network information and returns a JSON with the network info
 """
 # pylint: disable=consider-using-f-string
 import datetime
-import time
-import socket
-from urllib.request import urlopen
-import urllib.request
-import urllib.error
 import logging
+import socket
+import time
+import urllib.error
+import urllib.request
+from urllib.request import urlopen
 from uuid import getnode as get_mac
 
 import psutil

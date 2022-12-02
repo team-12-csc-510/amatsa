@@ -1,9 +1,9 @@
 """This module fetches disk information and returns a JSON with the disk data"""
-import time
+import logging
 import re
+import time
 
 import psutil
-import logging
 
 from config.threshold import AlarmThreshold, AlarmType
 from src.system import System

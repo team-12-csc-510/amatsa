@@ -1,13 +1,13 @@
 """Client Code integrates all metrics and send to Elastic Server"""
 
+import logging
 import os
 import sys
 import time
 from datetime import datetime
-import logging
 
-import yaml
 import elasticsearch as k
+import yaml
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 
