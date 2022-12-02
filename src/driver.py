@@ -5,12 +5,15 @@ import sys
 from datetime import datetime
 
 import yaml
+from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 
 from src.disk import Disk
 from src.gpu import GPUdata
 from src.network import Network
 from src.system import System
+
+load_dotenv()  # take environment variables from .env.
 
 
 def CollectMetrics(obj: dict) -> bool:
