@@ -25,7 +25,7 @@ jobs:
                 pip install -e .
             - name: Build documentation and commit
               run: |
-                  sudo apt-get install python3-sphinx                
+                  sudo apt-get install python3-sphinx
                   sphinx-apidoc -f -o docs src
                   cd docs/
                   make html

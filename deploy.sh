@@ -16,7 +16,7 @@ while true; do
         [Nn]* ) echo "Verify config values and begin setup again."; exit;;
         [Yy]* ) echo "Starting installation..."; break;;
         * ) echo "Please answer yes or no.";;
-    esac    
+    esac
 done
 
 # check python3
@@ -24,7 +24,7 @@ echo "Checking if python3 requisites are met..."
 pyver=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
 if [ $? -eq 0 ]
 then
-    split=(${pyver//./ })    
+    split=(${pyver//./ })
     if [ "${split[0]}" -eq "3" ] && [ "${split[1]}" -lt "10" ]
     then
         echo "Found python v${split[0]}.${split[1]}. Install Python v3.10+ and try again."
