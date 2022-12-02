@@ -653,6 +653,7 @@ table.docutils.citation, table.docutils.citation td, table.docutils.citation th 
   box-shadow: none;
 }
 
+
 /* relbar */
 
 .related {
@@ -698,4 +699,3 @@ nav#breadcrumbs li+li:before {
         display: none;
     }
 }
-
