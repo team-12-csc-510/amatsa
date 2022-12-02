@@ -8,7 +8,8 @@ from datetime import datetime
 
 import psutil
 
-from src.utils import size_in_gb
+from config.threshold import AlarmThreshold, AlarmType
+from src.utils import fire_alarm, size_in_gb
 
 UNKNOWN = "unknown"
 
@@ -96,6 +97,8 @@ class System:
         json["cpu_load_5min"] = round(cpu_load[1], 2)
         json["cpu_load_15min"] = round(cpu_load[2], 2)
 
+        if json["cpu_load_5min"] >= AlarmThreshold.SYSTEM.value:
+            fire_alarm(alarm_type=AlarmType.SYSTEM)
         # available memory
         json["avail_memory_gb"] = size_in_gb(psutil.virtual_memory().available)
 
