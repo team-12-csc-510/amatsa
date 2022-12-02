@@ -36,7 +36,7 @@ jobs:
             mypy tests/*
 
       - name: Run tests and coverage report
-        run: |       
+        run: |
           coverage run --source=src --data-file tests/.coverage -m pytest -s
           coverage xml --data-file tests/.coverage -o tests/coverage.xml
           coverage report --data-file tests/.coverage -m
@@ -46,7 +46,8 @@ jobs:
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov -t ${CODECOV_TOKEN}
-          
+
+
 #      - name : Send coverage report
 #        run: |
 #          pip install codacy-coverage

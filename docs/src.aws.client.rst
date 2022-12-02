@@ -1,13 +1,13 @@
-src.config package
-==================
+src.aws.client package
+======================
 
 Submodules
 ----------
 
-src.config.threshold module
----------------------------
+src.aws.client.ses module
+-------------------------
 
-.. automodule:: src.config.threshold
+.. automodule:: src.aws.client.ses
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +15,7 @@ src.config.threshold module
 Module contents
 ---------------
 
-.. automodule:: src.config
+.. automodule:: src.aws.client
    :members:
    :undoc-members:
    :show-inheritance:

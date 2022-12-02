@@ -1,6 +1,17 @@
 src.config package
 ==================
 
+Submodules
+----------
+
+src.config.threshold module
+---------------------------
+
+.. automodule:: src.config.threshold
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

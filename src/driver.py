@@ -8,12 +8,15 @@ import logging
 
 import yaml
 import elasticsearch as k
+from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 
 from src.disk import Disk
 from src.gpu import GPUdata
 from src.network import Network
 from src.system import System
+
+load_dotenv()  # take environment variables from .env.
 
 
 def CollectMetrics(obj: dict) -> bool:

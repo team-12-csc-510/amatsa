@@ -2,8 +2,8 @@
 
 |Notes|Score|Evidence|
 |-----|------|---------|
-|Video1|N/A| New project| 
-|Video2|3|Demo video in README.md| 
+|Video1|N/A| New project|
+|Video2|3|Demo video in README.md|
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others...but nevertheless, here is a track record that everyone is contributing a lot)|3|[GitHub](https://github.com/VSangarya/AMATSA/graphs/contributors)|
 |Number of commits|3|[GitHub](https://github.com/VSangarya/AMATSA/pulse)|
 |Number of commits: by different people|3|[GitHub](https://github.com/VSangarya/AMATSA/pulse)|
@@ -55,49 +55,49 @@
 Are e-mails to your support e-mail address received by more than one person?|3 |Yes all members have access to respective support emails|
 Does your project have a ticketing system to manage bug reports and feature requests?|3|Yes ([Issues](https://github.com/VSangarya/AMATSA/issues)  section in GitHub)|
 Is your project's ticketing system publicly visible to your users, so they can view bug reports and feature requests?|3|	Yes, it is publicly available|
-Software’s architecture and design is modular | 3 | Yes - There are many seperate modules for different functionality in our repository| 
-Software uses an accepted coding standard or convention | 3 | Yes, coding standards are followed [Codacy](https://app.codacy.com/gh/VSangarya/AMATSA/dashboard?utm_source=github.com&utm_medium=referral&utm_content=VSangarya/AMATSA&utm_campaign=Badge_Grade)| 
-Software allows data to be imported and exported using open data formats | 3 | Data can be imported and exported using json | 
-Software allows communications using open communications protocols | 3 | Yes, our website uses HTTP to communicate. | 
-Software cross-platform compatible | 3 | Yes - Works on Windows, Mac, Ubuntu | 
-Software adhere to appropriate accessibility conventions or standards | 3 | Yes, we followed w3.org standards. | 
-Documentation adheres to appropriate accessibility conventions or standards | 3 | yes, added detailed documents for each step  | 
-Each source code releases a snapshot of the repository | 3 | Snapshot of latest release is available | 
-Releases are tagged in the repository | 3 | Yes, releases are tagged | 
-There is a branch of the repository that is always stable | 3 | Main branch is always stable | 
-Back-up your repository | 3 | Yes, using git clone!!| 
-Provide publicly available instructions for building the software from the source code | 3 | Setup instructions [README.md](https://github.com/VSangarya/AMATSA#-amatsa) | 
-Build, or package, the software using an automated tool | 3 | Shell scripts for Unix/Batch script for Windows deployment | 
-Provide publicly-available instructions for deploying the software | 3 | [README.md](https://github.com/VSangarya/AMATSA#-amatsa) | 
-Documentation list all third-party dependencies | 3 | [requirements.txt](https://github.com/VSangarya/AMATSA/blob/main/requirements.txt) | 
-Documentation lists the version number for all third-party dependencies | 3 | [requirements.txt](https://github.com/VSangarya/AMATSA/blob/main/requirements.txt)| 
-Software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional | 3 | All can be downloaded using pip | 
-Download dependencies using a dependency management tool or package manager | 3 | All can be downloaded using pip | 
-Tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful | 3 | 'tests' folder | 
-Automated test suite for your software | 3 | [Github Workflows](https://github.com/VSangarya/AMATSA/blob/main/.github/workflows/build.yml) | 
-Framework to periodically (e.g. nightly) run your tests on the latest version of the source code | 0 | We run tests when a branch is being merged to main | 
-Using continuous integration, automatically running tests whenever changes are made to your source code | 3 | [Github Workflows](https://github.com/VSangarya/AMATSA/blob/main/.github/workflows/build.yml) | 
-Test results publicly visible | 3 | [Builds on a pull request](https://github.com/VSangarya/AMATSA/pulls) | 
-Manually-run tests documented |  |  | 
-Project has resources (e.g. blog, Twitter, RSS feed, Facebook page, wiki, mailing list) that are regularly updated with information about your software | 3 | All updates on the readme [README.md](https://github.com/VSangarya/AMATSA#-amatsa) | 
-Documentation states how many projects and users are associated with your project | 3 | All users are mentioned in [README]((https://github.com/VSangarya/AMATSA#-amatsa)) | 
-Provide success stories on your website | 0 | Software not yet used publicly | 
-Listing the important partners and collaborators in your website | 3 | Github | 
-Listing the project's publications on our website or link to a resource where these are available | 0 | No publications | 
-Listing third-party publications that refer to the software on our website or link to a resource where these are available | 0 | No publications | 
-Users can subscribe to notifications to changes to your source code repository | 3 | Software is on Github | 
-Since the software is developed as an open source project (and, not just a project developing open source software), do you have a governance model | 3 | 2 approvers required to merge into main | 
-Do you accept contributions (e.g. bug fixes, enhancements, documentation updates, tutorials) from people who are not part of your project? | 3 | Software is open source, other collaborators can create a pull request for a change | 
-Do you have a contributions policy | 3 | [CONTRIBUTING.md](../CONTRIBUTING.md) | 
-Is your contributions' policy publicly available? | 3 | [CONTRIBUTING.md](../CONTRIBUTING.md) | 
-Do contributors keep the copyright/IP of their contributions | 3 | Commits are public | 
-Website and documentation clearly states the copyright owners of your software and documentation | 3 | [README.md](https://github.com/VSangarya/AMATSA#-amatsa) | 
-Does each of your source code files include a copyright statement | 0 |  | 
-The website and documentation clearly state the licence of your software | 3 | [LICENSE](../LICENSE) | 
-Software released under an open source licence | 3 | [LICENSE](../LICENSE) | 
-Software released under an OSI-approved open-source licence | 3 | [LICENSE](../LICENSE) | 
-Source code files include a licence header | 0 |  | 
-Do you have a recommended citation for your software | 3 | Zenodo Badge in [README]((https://github.com/VSangarya/AMATSA#-amatsa)) | 
-Documentation includes a project roadmap (a list of project and development milestones for the next 3, 6 months) | 2 | Enhancements in [README]((https://github.com/VSangarya/AMATSA#-amatsa)) | 
-Documentation describe how the project is funded, and the period over which funding is guaranteed? | 3 | We used free tools hence no funding required | 
-Do you make timely announcements of the deprecation of components, APIs, etc. | 3 | All updates are mentioned in [README]((https://github.com/VSangarya/AMATSA#-amatsa)) | 
+Software’s architecture and design is modular | 3 | Yes - There are many seperate modules for different functionality in our repository|
+Software uses an accepted coding standard or convention | 3 | Yes, coding standards are followed [Codacy](https://app.codacy.com/gh/VSangarya/AMATSA/dashboard?utm_source=github.com&utm_medium=referral&utm_content=VSangarya/AMATSA&utm_campaign=Badge_Grade)|
+Software allows data to be imported and exported using open data formats | 3 | Data can be imported and exported using json |
+Software allows communications using open communications protocols | 3 | Yes, our website uses HTTP to communicate. |
+Software cross-platform compatible | 3 | Yes - Works on Windows, Mac, Ubuntu |
+Software adhere to appropriate accessibility conventions or standards | 3 | Yes, we followed w3.org standards. |
+Documentation adheres to appropriate accessibility conventions or standards | 3 | yes, added detailed documents for each step  |
+Each source code releases a snapshot of the repository | 3 | Snapshot of latest release is available |
+Releases are tagged in the repository | 3 | Yes, releases are tagged |
+There is a branch of the repository that is always stable | 3 | Main branch is always stable |
+Back-up your repository | 3 | Yes, using git clone!!|
+Provide publicly available instructions for building the software from the source code | 3 | Setup instructions [README.md](https://github.com/VSangarya/AMATSA#-amatsa) |
+Build, or package, the software using an automated tool | 3 | Shell scripts for Unix/Batch script for Windows deployment |
+Provide publicly-available instructions for deploying the software | 3 | [README.md](https://github.com/VSangarya/AMATSA#-amatsa) |
+Documentation list all third-party dependencies | 3 | [requirements.txt](https://github.com/VSangarya/AMATSA/blob/main/requirements.txt) |
+Documentation lists the version number for all third-party dependencies | 3 | [requirements.txt](https://github.com/VSangarya/AMATSA/blob/main/requirements.txt)|
+Software list the web address, and licences for all third-party dependencies and say whether the dependencies are mandatory or optional | 3 | All can be downloaded using pip |
+Download dependencies using a dependency management tool or package manager | 3 | All can be downloaded using pip |
+Tests that can be run after your software has been built or deployed to show whether the build or deployment has been successful | 3 | 'tests' folder |
+Automated test suite for your software | 3 | [Github Workflows](https://github.com/VSangarya/AMATSA/blob/main/.github/workflows/build.yml) |
+Framework to periodically (e.g. nightly) run your tests on the latest version of the source code | 0 | We run tests when a branch is being merged to main |
+Using continuous integration, automatically running tests whenever changes are made to your source code | 3 | [Github Workflows](https://github.com/VSangarya/AMATSA/blob/main/.github/workflows/build.yml) |
+Test results publicly visible | 3 | [Builds on a pull request](https://github.com/VSangarya/AMATSA/pulls) |
+Manually-run tests documented |  |  |
+Project has resources (e.g. blog, Twitter, RSS feed, Facebook page, wiki, mailing list) that are regularly updated with information about your software | 3 | All updates on the readme [README.md](https://github.com/VSangarya/AMATSA#-amatsa) |
+Documentation states how many projects and users are associated with your project | 3 | All users are mentioned in [README](<(https://github.com/VSangarya/AMATSA#-amatsa)>) |
+Provide success stories on your website | 0 | Software not yet used publicly |
+Listing the important partners and collaborators in your website | 3 | Github |
+Listing the project's publications on our website or link to a resource where these are available | 0 | No publications |
+Listing third-party publications that refer to the software on our website or link to a resource where these are available | 0 | No publications |
+Users can subscribe to notifications to changes to your source code repository | 3 | Software is on Github |
+Since the software is developed as an open source project (and, not just a project developing open source software), do you have a governance model | 3 | 2 approvers required to merge into main |
+Do you accept contributions (e.g. bug fixes, enhancements, documentation updates, tutorials) from people who are not part of your project? | 3 | Software is open source, other collaborators can create a pull request for a change |
+Do you have a contributions policy | 3 | [CONTRIBUTING.md](../CONTRIBUTING.md) |
+Is your contributions' policy publicly available? | 3 | [CONTRIBUTING.md](../CONTRIBUTING.md) |
+Do contributors keep the copyright/IP of their contributions | 3 | Commits are public |
+Website and documentation clearly states the copyright owners of your software and documentation | 3 | [README.md](https://github.com/VSangarya/AMATSA#-amatsa) |
+Does each of your source code files include a copyright statement | 0 |  |
+The website and documentation clearly state the licence of your software | 3 | [LICENSE](../LICENSE) |
+Software released under an open source licence | 3 | [LICENSE](../LICENSE) |
+Software released under an OSI-approved open-source licence | 3 | [LICENSE](../LICENSE) |
+Source code files include a licence header | 0 |  |
+Do you have a recommended citation for your software | 3 | Zenodo Badge in [README](<(https://github.com/VSangarya/AMATSA#-amatsa)>) |
+Documentation includes a project roadmap (a list of project and development milestones for the next 3, 6 months) | 2 | Enhancements in [README](<(https://github.com/VSangarya/AMATSA#-amatsa)>) |
+Documentation describe how the project is funded, and the period over which funding is guaranteed? | 3 | We used free tools hence no funding required |
+Do you make timely announcements of the deprecation of components, APIs, etc. | 3 | All updates are mentioned in [README](<(https://github.com/VSangarya/AMATSA#-amatsa)>) |
