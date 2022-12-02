@@ -1,21 +1,9 @@
+import logging
 import os
 
 from botocore.exceptions import ClientError
 
 from src.aws import AWSClient
-
-# The HTML body of the email.
-BODY_HTML = """<html>
-<head></head>
-<body>
-  <h1>Amazon SES Test (SDK for Python)</h1>
-  <p>This email was sent with
-    <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
-    <a href='https://aws.amazon.com/sdk-for-python/'>
-      AWS SDK for Python (Boto)</a>.</p>
-</body>
-</html>
-            """
 
 
 class SES:
@@ -24,11 +12,13 @@ class SES:
         recipient: list,
         subject: str = "This a test subject",
         body_text: str = "This is a test",
+        heading: str = "This is a test heading",
     ):
         self.client = AWSClient("ses").client
         self.recipient = recipient
         self.body_text = body_text
         self.subject = subject
+        self.heading = heading
 
     def send_mail(self):
         try:
@@ -40,7 +30,7 @@ class SES:
                     "Body": {
                         "Html": {
                             "Charset": os.environ["CHARSET"],
-                            "Data": BODY_HTML,
+                            "Data": self.generate_html_body(),
                         },
                         "Text": {
                             "Charset": os.environ["CHARSET"],
@@ -59,7 +49,20 @@ class SES:
             )
         # Display an error if something goes wrong.
         except ClientError as e:
-            print(e.response["Error"]["Message"])
+            logging.error(e.response["Error"]["Message"])
         else:
-            print("Email sent! Message ID:"),
-            print(response["MessageId"])
+            message_id = response["MessageId"]
+            logging.info(f"Email sent! Message ID: {message_id}")
+
+    def generate_html_body(self):
+        return f"""<html>
+                <head></head>
+                <body>
+                  <h1>{self.heading}</h1>
+                  <p>This email was sent with
+                    <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
+                    <a href='https://aws.amazon.com/sdk-for-python/'>
+                      AWS SDK for Python (Boto)</a>.</p>
+                </body>
+                </html>
+            """

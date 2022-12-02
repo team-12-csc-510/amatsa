@@ -3,8 +3,9 @@ import re
 
 import psutil
 
+from config.threshold import AlarmThreshold, AlarmType
 from src.system import System
-from src.utils import size_in_gb
+from src.utils import fire_alarm, size_in_gb
 
 
 class Disk:
@@ -80,4 +81,7 @@ class Disk:
         if self.sys.platform_name == "Darwin":
             self.data["disk"] = self.format_darwin(self.data)
 
+        for disk in self.data["disk"]:
+            if disk["percentage"] >= AlarmThreshold.DISK.value:
+                fire_alarm(AlarmType.DISK)
         return self.data["disk"]
