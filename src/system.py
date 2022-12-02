@@ -75,7 +75,7 @@ class System:
             self.total_memory = UNKNOWN  # type: ignore
 
     def FillSystemInfo(self, json: dict):
-        """This method fills the colelcted system info from the object's attributes"""
+        """This method fills the collected system info from the object's attributes"""
         json["hostname"] = self.hostname
         json["bios_uuid"] = self.bios_uuid
         json["platform"] = self.platform_name

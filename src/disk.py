@@ -1,7 +1,9 @@
 """This module fetches disk information and returns a JSON with the disk data"""
+import time
 import re
 
 import psutil
+import logging
 
 from src.system import System
 from src.utils import size_in_gb
@@ -20,13 +22,13 @@ class Disk:
         """
         try:
             val = getattr(attr, val)
-        except Exception as e:
-            print(e)
+        except (AttributeError, ValueError) as e:
+            logging.error(time, str(e) , "occurred while trying to get disk attribute-"+val)
             val = None
         return val
 
     def format_darwin(self, data):
-        """Format disk data for MacOS,
+        """Format disk data for macOS,
         summarize all paritions into the disk it belons to
         """
         disk_nums = [[] for i in range(len(data["disk"]))]
