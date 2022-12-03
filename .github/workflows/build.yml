@@ -24,6 +24,7 @@ jobs:
 
       - name: Install Python Dependencies
         run: |
+          git config remote.origin.url 'https://{{ACCESS_TOKEN}}@github.com/team-12-csc-510/amatsa'
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install -e .
 
