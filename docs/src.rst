@@ -45,6 +45,14 @@ src.network module
    :undoc-members:
    :show-inheritance:
 
+src.process module
+------------------
+
+.. automodule:: src.process
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 src.system module
 -----------------
 
