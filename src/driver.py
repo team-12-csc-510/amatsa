@@ -1,13 +1,11 @@
 """Client Code integrates all metrics and send to Elastic Server"""
 
 import logging
-import os
 import sys
 import time
 from datetime import datetime
 
 import elasticsearch as k
-import yaml
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 
@@ -15,6 +13,7 @@ from src.disk import Disk
 from src.gpu import GPUdata
 from src.network import Network
 from src.system import System
+from src.utils import get_config
 
 load_dotenv()  # take environment variables from .env.
 
@@ -64,12 +63,7 @@ if __name__ == "__main__":
     error_list.extend([k.SerializationError, k.SSLError, k.TransportError, k.UnsupportedProductError])
     error_list1 = tuple(error_list)
     # read config from yml file
-    with open(
-        os.path.dirname(os.path.realpath(__file__)) + "/config/amatsa-client.yml",
-        "r",
-        encoding="utf-8",
-    ) as file:
-        config = yaml.safe_load(file)
+    config = get_config()
     # collect meta-data fields
     version = config["version"]
     client_json["metadata"] = {
@@ -80,6 +74,7 @@ if __name__ == "__main__":
     if not CollectMetrics(client_json):
         sys.exit(1)
     # client_json = json.dumps(client_json, indent=2)
+    # call pickle function with network creds.
     print("final_json", client_json)
     try:
         # push to elastic
@@ -88,6 +83,6 @@ if __name__ == "__main__":
         es = Elasticsearch(hosts=hosts_config, verify_certs=False, basic_auth=token)
         resp = es.index(index=config["index"]["name"], document=client_json)
     except error_list1 as e:
-        logging.exception(time + str(e) + "occured while using elastic search")
+        logging.exception(str(time.time()) + " " + str(e) + "occured while using elastic search")
         print("Failed to send data to backend", file=sys.stderr)
         sys.exit(1)

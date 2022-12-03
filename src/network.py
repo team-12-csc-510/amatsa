@@ -14,6 +14,10 @@ from uuid import getnode as get_mac
 
 import psutil
 import speedtest  # type: ignore
+import os
+import pickle
+
+from src.utils import check_time_delta, get_config
 
 UNKNOWN = "unknown"
 
@@ -48,7 +52,8 @@ class Network:
     def get_network_info(self):
         self.connect_status()
         mac = get_mac()
-        self.mac_address = ":".join(("%012X" % mac)[i : i + 2] for i in range(0, 12, 2))
+        do_speedtest = False
+        self.mac_address = ":".join(("%012X" % mac)[i: i + 2] for i in range(0, 12, 2))
         if not self.mac_address:
             self.mac_address = UNKNOWN
 
@@ -60,10 +65,24 @@ class Network:
             self.ip_address = socket.gethostbyname(self.hostname)
 
         if self.connection_status:
-            self.speed_test = speedtest.Speedtest(secure=1)
-            self.time_now = datetime.datetime.now().strftime("%H:%M:%S")
-            self.down_speed = round(round(self.speed_test.download()) / 1048576, 2)
-            self.up_speed = round(round(self.speed_test.upload()) / 1048576, 2)
+            prev_network = self.get_saved_network_details()
+            if prev_network == None:
+                do_speedtest = True
+            else:
+                if prev_network.ip_address != self.ip_address:
+                    do_speedtest = True
+                if check_time_delta(prev_network.time_now):
+                    do_speedtest = True
+            if do_speedtest:
+                self.speed_test = speedtest.Speedtest(secure=1)
+                self.time_now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                self.down_speed = round(round(self.speed_test.download()) / 1048576, 2)
+                self.up_speed = round(round(self.speed_test.upload()) / 1048576, 2)
+            else:
+                self.time_now = prev_network.time_now
+                self.speed_test = prev_network.speed_test
+                self.up_speed = prev_network.speed_test
+                self.down_speed = prev_network.down_speed
         else:
             self.down_speed = UNKNOWN
             self.up_speed = UNKNOWN
@@ -73,12 +92,14 @@ class Network:
         prefixes = ["169.254", "127."]
         for intface, addr_list in self.addresses.items():
             if any(
-                getattr(addr, "address").startswith(tuple(prefixes))
-                for addr in addr_list
+                    getattr(addr, "address").startswith(tuple(prefixes))
+                    for addr in addr_list
             ):
                 continue
             elif intface in self.stats and getattr(self.stats[intface], "isup"):
                 self.connected_interface = intface
+        if speedtest:
+            self.save_network_details()
 
     def fill_network_info(self, json: dict):
         json["mac_address"] = self.mac_address
@@ -89,3 +110,17 @@ class Network:
         json["down_speed"] = self.down_speed
         json["up_speed"] = self.up_speed
         json["time_now"] = self.time_now
+
+    def save_network_details(self) -> None:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/network.pickle'), 'wb') as handle:
+            pickle.dump(self, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    @staticmethod
+    def get_saved_network_details():
+        if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/network.pickle')):
+            return None
+
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/network.pickle'), 'rb') as handle:
+            # case where file is not already present
+            old_obj = pickle.load(handle)
+        return old_obj
