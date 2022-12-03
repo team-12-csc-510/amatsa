@@ -30,8 +30,8 @@ jobs:
                   cd docs/
                   make html
                   cd ..
-                  git config --global user.name "qureshi-ali"
-                  git config --global user.email "qureshi.ali@outlook.com"
+                  git config --global user.name "Sakshamrzt"
+                  git config --global user.email "saksham.juit@gmail.com"
                   git add -f docs/*
                   git commit -m "updating docs" -a || true
                   git push
