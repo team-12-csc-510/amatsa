@@ -88,6 +88,6 @@ if __name__ == "__main__":
         es = Elasticsearch(hosts=hosts_config, verify_certs=False, basic_auth=token)
         resp = es.index(index=config["index"]["name"], document=client_json)
     except error_list1 as e:
-        logging.exception(time + str(e) + "occured while using elastic search")
+        logging.exception(str(e) + "occured while using elastic search")
         print("Failed to send data to backend", file=sys.stderr)
         sys.exit(1)

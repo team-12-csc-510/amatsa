@@ -42,7 +42,7 @@ class Network:
             with urlopen(host):  # Python 3.x
                 self.connection_status = True
         except (urllib.error.HTTPError, urllib.error.URLError, urllib.error.ContentTooShortError) as e:
-            logging.error(time, str(e), "occurred while opening http://google.com.")
+            logging.error(str(e)+"occurred while opening http://google.com.")
             self.connection_status = False
 
     def get_network_info(self):

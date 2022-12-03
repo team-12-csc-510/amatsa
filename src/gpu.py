@@ -18,7 +18,7 @@ class GPUdata:
         try:
             val = getattr(attr, val)
         except (AttributeError, ValueError) as e:
-            logging.error(time, str(e) +"occurred while trying to get GPU attribute-"+val)
+            logging.error(str(e) +"occurred while trying to get GPU attribute-"+val)
             val = None
         return val
 

@@ -24,7 +24,7 @@ class Disk:
         try:
             val = getattr(attr, val)
         except (AttributeError, ValueError) as e:
-            logging.error(time, str(e) , "occurred while trying to get disk attribute-"+val)
+            logging.error(str(e) + "occurred while trying to get disk attribute-"+val)
             val = None
         return val
 
