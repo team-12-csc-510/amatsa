@@ -1,15 +1,15 @@
 """File contains util methods used by all modules"""
 import os
+from datetime import datetime, timedelta
+
+import yaml
 
 from aws.client.ses import SES
 from config.threshold import AlarmThreshold, AlarmType
-import yaml
-from datetime import datetime, timedelta
-
 
 
 def size_in_gb(byte) -> int:
-    return round(byte / 1024 ** 3, 2)
+    return round(byte / 1024**3, 2)
 
 
 def fire_alarm(alarm_type: AlarmType):
@@ -43,9 +43,9 @@ def fire_alarm(alarm_type: AlarmType):
 def get_config() -> dict:
     config = {}
     with open(
-            os.path.dirname(os.path.realpath(__file__)) + "/config/amatsa-client.yml",
-            "r",
-            encoding="utf-8",
+        os.path.dirname(os.path.realpath(__file__)) + "/config/amatsa-client.yml",
+        "r",
+        encoding="utf-8",
     ) as file:
         config = yaml.safe_load(file)
     return config

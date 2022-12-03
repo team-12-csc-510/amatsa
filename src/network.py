@@ -5,6 +5,8 @@ This module fetches network information and returns a JSON with the network info
 # pylint: disable=consider-using-f-string
 import datetime
 import logging
+import os
+import pickle
 import socket
 import time
 import urllib.error
@@ -14,10 +16,8 @@ from uuid import getnode as get_mac
 
 import psutil
 import speedtest  # type: ignore
-import os
-import pickle
 
-from src.utils import check_time_delta, get_config
+from src.utils import check_time_delta
 
 UNKNOWN = "unknown"
 
@@ -45,7 +45,11 @@ class Network:
             host = "http://google.com"
             with urlopen(host):  # Python 3.x
                 self.connection_status = True
-        except (urllib.error.HTTPError, urllib.error.URLError, urllib.error.ContentTooShortError) as e:
+        except (
+            urllib.error.HTTPError,
+            urllib.error.URLError,
+            urllib.error.ContentTooShortError,
+        ) as e:
             logging.error(time, str(e), "occurred while opening http://google.com.")
             self.connection_status = False
 
@@ -53,7 +57,7 @@ class Network:
         self.connect_status()
         mac = get_mac()
         do_speedtest = False
-        self.mac_address = ":".join(("%012X" % mac)[i: i + 2] for i in range(0, 12, 2))
+        self.mac_address = ":".join(("%012X" % mac)[i : i + 2] for i in range(0, 12, 2))
         if not self.mac_address:
             self.mac_address = UNKNOWN
 
@@ -66,7 +70,7 @@ class Network:
 
         if self.connection_status:
             prev_network = self.get_saved_network_details()
-            if prev_network == None:
+            if prev_network is None:
                 do_speedtest = True
             else:
                 if prev_network.ip_address != self.ip_address:
@@ -92,8 +96,8 @@ class Network:
         prefixes = ["169.254", "127."]
         for intface, addr_list in self.addresses.items():
             if any(
-                    getattr(addr, "address").startswith(tuple(prefixes))
-                    for addr in addr_list
+                getattr(addr, "address").startswith(tuple(prefixes))
+                for addr in addr_list
             ):
                 continue
             elif intface in self.stats and getattr(self.stats[intface], "isup"):
@@ -112,15 +116,29 @@ class Network:
         json["time_now"] = self.time_now
 
     def save_network_details(self) -> None:
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/network.pickle'), 'wb') as handle:
+        with open(
+            os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), "../data/network.pickle"
+            ),
+            "wb",
+        ) as handle:
             pickle.dump(self, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     @staticmethod
     def get_saved_network_details():
-        if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/network.pickle')):
+        if not os.path.exists(
+            os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), "../data/network.pickle"
+            )
+        ):
             return None
 
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/network.pickle'), 'rb') as handle:
+        with open(
+            os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), "../data/network.pickle"
+            ),
+            "rb",
+        ) as handle:
             # case where file is not already present
             old_obj = pickle.load(handle)
         return old_obj
