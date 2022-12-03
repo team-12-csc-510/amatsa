@@ -1,6 +1,5 @@
 """This module fetches GPU information and returns a JSON with the GPU data"""
 import logging
-import sys
 import time
 
 import GPUtil  # type: ignore
@@ -18,7 +17,9 @@ class GPUdata:
         try:
             val = getattr(attr, val)
         except (AttributeError, ValueError) as e:
-            logging.error(time, str(e) +"occurred while trying to get GPU attribute-"+val)
+            logging.error(
+                time, str(e) + "occurred while trying to get GPU attribute-" + val
+            )
             val = None
         return val
 
