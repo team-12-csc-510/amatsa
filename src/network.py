@@ -4,7 +4,11 @@ This module fetches network information and returns a JSON with the network info
 """
 # pylint: disable=consider-using-f-string
 import datetime
+import logging
 import socket
+import time
+import urllib.error
+import urllib.request
 from urllib.request import urlopen
 from uuid import getnode as get_mac
 
@@ -37,8 +41,8 @@ class Network:
             host = "http://google.com"
             with urlopen(host):  # Python 3.x
                 self.connection_status = True
-        except Exception as e:
-            print(e)
+        except (urllib.error.HTTPError, urllib.error.URLError, urllib.error.ContentTooShortError) as e:
+            logging.error(time, str(e), "occurred while opening http://google.com.")
             self.connection_status = False
 
     def get_network_info(self):
