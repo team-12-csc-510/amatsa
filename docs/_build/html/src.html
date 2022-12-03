@@ -97,6 +97,44 @@
 <section id="src-network-module">
 <h2>src.network module<a class="headerlink" href="#src-network-module" title="Permalink to this headline">¶</a></h2>
 </section>
+<section id="module-src.process">
+<span id="src-process-module"></span><h2>src.process module<a class="headerlink" href="#module-src.process" title="Permalink to this headline">¶</a></h2>
+<p>This module fetches network information and returns a JSON with the network info data</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.process.Process">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.process.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.process.Process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to deal with individual processes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.process.Process.get_process_detail">
+<span class="sig-name descname"><span class="pre">get_process_detail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.process.Process.get_process_detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.process.Process.update_cpu">
+<span class="sig-name descname"><span class="pre">update_cpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.process.Process.update_cpu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.process.ProcessMeta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.process.</span></span><span class="sig-name descname"><span class="pre">ProcessMeta</span></span><a class="headerlink" href="#src.process.ProcessMeta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>parent class to handle multiple process data</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.process.ProcessMeta.create_lists">
+<span class="sig-name descname"><span class="pre">create_lists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.process.ProcessMeta.create_lists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.process.ProcessMeta.process_list">
+<span class="sig-name descname"><span class="pre">process_list</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.process.Process" title="src.process.Process"><span class="pre">src.process.Process</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#src.process.ProcessMeta.process_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="src-system-module">
 <h2>src.system module<a class="headerlink" href="#src-system-module" title="Permalink to this headline">¶</a></h2>
 </section>
