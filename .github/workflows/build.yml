@@ -33,8 +33,8 @@ jobs:
             isort --check-only --profile black .
             black --check .
             flake8 --ignore D203 --exclude .venv,.git,__pycache__,docs/source/conf.py,old,build,dist --max-complexity 12 --max-line-length=88 --extend-ignore=E203
-            mypy src/*
-            mypy tests/*
+            mypy src/
+            mypy tests/
 
       - name: Run tests and coverage report
         run: |
