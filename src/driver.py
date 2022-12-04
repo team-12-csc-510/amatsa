@@ -9,15 +9,15 @@ from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import (
     ApiError,
+    BadRequestError,
+    ConflictError,
     ConnectionError,
+    NotFoundError,
+    RequestError,
+    SerializationError,
     SSLError,
     TransportError,
     UnsupportedProductError,
-    SerializationError,
-    RequestError,
-    BadRequestError,
-    ConflictError,
-    NotFoundError,
 )
 
 from src.disk import Disk
