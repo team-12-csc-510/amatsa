@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 
 from src.disk import Disk
+from src.file_monitoring import FileMonitoring
 from src.gpu import GPUdata
 from src.network import Network
 from src.process import ProcessMeta
@@ -18,6 +19,48 @@ from src.utils import get_config
 
 load_dotenv()  # take environment variables from .env.
 
+
+def ReadFileMonitoringFile(filename):
+    """This method parses data from the file and returns a dictionary object"""
+    file_dict = {}
+    with open(filename,'r') as file:
+        file_data = file.readlines()
+        for data in file_data:
+            print(data)
+            data_ls = data.split(" ")
+            if data_ls[1] not in file_dict:
+                file_dict[data_ls[1]] = []
+            file_dict[data_ls[1]].append(data_ls[0])
+
+    return file_dict
+
+def ReadFileMonitoringFile(filename):
+    """This method parses data from the file and returns a dictionary object"""
+    file_dict = {}
+    with open(filename,'r') as file:
+        file_data = file.readlines()
+        for data in file_data:
+            print(data)
+            data_ls = data.split(" ")
+            if data_ls[1] not in file_dict:
+                file_dict[data_ls[1]] = []
+            file_dict[data_ls[1]].append(data_ls[0])
+
+    return file_dict
+
+def ReadFileMonitoringFile(filename):
+    """This method parses data from the file and returns a dictionary object"""
+    file_dict = {}
+    with open(filename,'r') as file:
+        file_data = file.readlines()
+        for data in file_data:
+            print(data)
+            data_ls = data.split(" ")
+            if data_ls[1] not in file_dict:
+                file_dict[data_ls[1]] = []
+            file_dict[data_ls[1]].append(data_ls[0])
+
+    return file_dict
 
 def CollectMetrics(obj: dict) -> bool:
     """This method collects client metrics and returns them in a json"""
@@ -31,7 +74,15 @@ def CollectMetrics(obj: dict) -> bool:
         fs = Disk()
         sy = System()
         net = Network()
-        # disk info
+
+        # read data from the file
+        filename = FileMonitoring().get_filename()
+        obj["file_data"] = ReadFileMonitoringFile(filename)
+
+        # delete data from the file
+        with open(filename, 'w') as file:
+            pass
+
         client_disk_info = fs.retrieve_disk_info()
         obj["disk"] = client_disk_info
         # system info
@@ -94,7 +145,11 @@ if __name__ == "__main__":
         # push to elastic
         hosts_config = config["connect"]["endpoint"]
         # ssl_fingerprint = config["connect"]["tls-fingerprint"]
-        es = Elasticsearch(hosts=hosts_config, verify_certs=False, basic_auth=token)
+        es = Elasticsearch(
+            hosts=[{"host": "localhost", "port": 9200, "scheme": "http"}],
+            basic_auth=token,
+            verify_certs=False,
+        )
         resp = es.index(index=config["index"]["name"], document=client_json)
     except error_list1 as e:
         logging.exception(
