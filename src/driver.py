@@ -14,7 +14,7 @@ from src.gpu import GPUdata
 from src.network import Network
 from src.process import ProcessMeta
 from src.system import System
-from src.utils import get_config
+from src.utils import dump_list_to_json, get_config
 
 load_dotenv()  # take environment variables from .env.
 
@@ -50,11 +50,16 @@ def CollectMetrics(obj: dict) -> bool:
             gpu_info = None
         obj["gpu"] = gpu_info
         process_data = ProcessMeta()
-        obj["high_memory_processes"] = process_data.top_memory
-        obj["high_cpu_processes"] = process_data.top_cpu
+        obj["high_memory_processes"] = dump_list_to_json(process_data.top_memory)
+        obj["high_cpu_processes"] = dump_list_to_json(process_data.top_cpu)
         # converting to json string
     except Exception as e:
-        logging.error(time, e, "occurred while collecting client metrix")
+        logging.error(
+            str(time.time())
+            .join(" ")
+            .join(str(e))
+            .join(" occurred while collecting client metrics")
+        )
         return False
 
     return True
@@ -94,7 +99,11 @@ if __name__ == "__main__":
         # push to elastic
         hosts_config = config["connect"]["endpoint"]
         # ssl_fingerprint = config["connect"]["tls-fingerprint"]
-        es = Elasticsearch(hosts=hosts_config, verify_certs=False, basic_auth=token)
+        es = Elasticsearch(
+            hosts=[{"host": "localhost", "port": 9200, "scheme": "http"}],
+            verify_certs=False,
+            basic_auth=token,
+        )
         resp = es.index(index=config["index"]["name"], document=client_json)
     except error_list1 as e:
         logging.exception(

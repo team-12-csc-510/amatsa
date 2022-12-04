@@ -1,6 +1,7 @@
 """File contains util methods used by all modules"""
+import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import yaml
 
@@ -13,6 +14,7 @@ def size_in_gb(byte) -> int:
 
 
 def fire_alarm(alarm_type: AlarmType):
+    return
     ses_object = SES(
         recipient=[os.environ["TEST_RECEIVER1"], os.environ["TEST_RECEIVER2"]]
     )
@@ -54,7 +56,14 @@ def get_config() -> dict:
 def check_time_delta(old_time: str) -> bool:
     time_now = datetime.now()
     time_as_datetime = datetime.strptime(old_time, "%d/%m/%Y %H:%M:%S")
-    if time_as_datetime - time_now > timedelta(900):
+    if (time_now - time_as_datetime).total_seconds() > 900:
         return True
     else:
         return False
+
+
+def dump_list_to_json(lst: list):
+    json_list = []
+    for element in lst:
+        json_list.append(json.dumps(element.__dict__))
+    return json_list
