@@ -8,7 +8,7 @@ from datetime import datetime
 
 import psutil
 
-from config.threshold import AlarmThreshold, AlarmType  # type: ignore
+from src.config.threshold import AlarmThreshold, AlarmType  # type: ignore
 from src.utils import fire_alarm, size_in_gb  # type: ignore
 
 UNKNOWN = "unknown"

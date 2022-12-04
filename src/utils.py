@@ -5,8 +5,8 @@ from datetime import datetime
 
 import yaml
 
-from aws.client.ses import SES  # type: ignore
-from config.threshold import AlarmThreshold, AlarmType  # type: ignore
+from src.aws.client.ses import SES  # type: ignore
+from src.config.threshold import AlarmThreshold, AlarmType  # type: ignore
 
 
 def size_in_gb(byte) -> int:

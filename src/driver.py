@@ -8,16 +8,13 @@ from datetime import datetime
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 from elasticsearch.exceptions import (
-    ApiError,
     BadRequestError,
     ConflictError,
     ConnectionError,
     NotFoundError,
-    RequestError,
     SerializationError,
     SSLError,
     TransportError,
-    UnsupportedProductError,
 )
 
 from src.disk import Disk
@@ -103,13 +100,10 @@ if __name__ == "__main__":
         )
         resp = es.index(index=config["index"]["name"], document=client_json)
     except (
-        ApiError,
         ConnectionError,
         SSLError,
         TransportError,
-        UnsupportedProductError,
         SerializationError,
-        RequestError,
         BadRequestError,
         ConflictError,
         NotFoundError,

@@ -5,7 +5,7 @@ import time
 
 import psutil
 
-from config.threshold import AlarmThreshold, AlarmType  # type: ignore
+from src.config.threshold import AlarmThreshold, AlarmType  # type: ignore
 from src.system import System
 from src.utils import fire_alarm, size_in_gb  # type: ignore
 
