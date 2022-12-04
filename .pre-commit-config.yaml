@@ -4,7 +4,9 @@ repos:
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
+        exclude: ^docs/
       - id: trailing-whitespace
+        exclude: ^docs/
       - id: check-toml
 
   - repo: https://github.com/executablebooks/mdformat
@@ -33,4 +35,4 @@ repos:
     rev: v0.991
     hooks:
       - id: mypy
-        args: ["--ignore-missing-imports"]
+        args: ["--install-types", "--non-interactive", "--ignore-missing-imports"]

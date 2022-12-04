@@ -1,20 +1,20 @@
 """Client Code integrates all metrics and send to Elastic Server"""
 
 import logging
-import os
 import sys
 import time
 from datetime import datetime
 
 import elasticsearch as k
-import yaml
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 
 from src.disk import Disk
 from src.gpu import GPUdata
 from src.network import Network
+from src.process import ProcessMeta
 from src.system import System
+from src.utils import get_config
 
 load_dotenv()  # take environment variables from .env.
 
@@ -49,6 +49,9 @@ def CollectMetrics(obj: dict) -> bool:
         if not gpu_info:
             gpu_info = None
         obj["gpu"] = gpu_info
+        process_data = ProcessMeta()
+        obj["high_memory_processes"] = process_data.top_memory
+        obj["high_cpu_processes"] = process_data.top_cpu
         # converting to json string
     except Exception as e:
         logging.error(time, e, "occurred while collecting client metrix")
@@ -60,16 +63,21 @@ def CollectMetrics(obj: dict) -> bool:
 if __name__ == "__main__":
     client_json = {}
     error_list = [k.ApiError, k.AuthenticationException, k.AuthorizationException]
-    error_list.extend([k.BadRequestError, k.ConflictError, k.ConnectionError, k.ConnectionTimeout, k.NotFoundError])
-    error_list.extend([k.SerializationError, k.SSLError, k.TransportError, k.UnsupportedProductError])
+    error_list.extend(
+        [
+            k.BadRequestError,
+            k.ConflictError,
+            k.ConnectionError,
+            k.ConnectionTimeout,
+            k.NotFoundError,
+        ]
+    )
+    error_list.extend(
+        [k.SerializationError, k.SSLError, k.TransportError, k.UnsupportedProductError]
+    )
     error_list1 = tuple(error_list)
     # read config from yml file
-    with open(
-        os.path.dirname(os.path.realpath(__file__)) + "/config/amatsa-client.yml",
-        "r",
-        encoding="utf-8",
-    ) as file:
-        config = yaml.safe_load(file)
+    config = get_config()
     # collect meta-data fields
     version = config["version"]
     client_json["metadata"] = {
@@ -80,6 +88,7 @@ if __name__ == "__main__":
     if not CollectMetrics(client_json):
         sys.exit(1)
     # client_json = json.dumps(client_json, indent=2)
+    # call pickle function with network creds.
     print("final_json", client_json)
     try:
         # push to elastic
@@ -88,6 +97,8 @@ if __name__ == "__main__":
         es = Elasticsearch(hosts=hosts_config, verify_certs=False, basic_auth=token)
         resp = es.index(index=config["index"]["name"], document=client_json)
     except error_list1 as e:
-        logging.exception(str(e) + "occured while using elastic search")
+        logging.exception(
+            str(time.time()) + " " + str(e) + "occured while using elastic search"
+        )
         print("Failed to send data to backend", file=sys.stderr)
         sys.exit(1)
