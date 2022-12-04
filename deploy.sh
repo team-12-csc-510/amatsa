@@ -72,9 +72,11 @@ fi
 echo "dependency libs installed [OK]"
 
 # setup scheduled job
-pypath=$(whereis python | awk '{print $2}')
+
+pypath=$(which python3 | awk '{print $0}')
 script=$(pwd)
 script="${script}/src/driver.py"
+echo ${pypath}
 crontab -l | { cat; echo "*/$1 * * * * $pypath $script"; } | crontab -
 if [ $? != "0" ]
 then
@@ -84,3 +86,13 @@ fi
 
 echo "cron-job setup [OK]"
 echo "Installation completed successfully!"
+
+
+$pypath -c 'from src import file_monitoring ; file_monitor = file_monitoring.FileMonitoring() ; file_monitor.start_file_monitoring()'
+if [ $? != "0" ]
+then
+    echo "Failed to start file monitoring."
+    exit 1
+fi
+
+
