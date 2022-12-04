@@ -15,7 +15,7 @@ from src.gpu import GPUdata
 from src.network import Network
 from src.process import ProcessMeta
 from src.system import System
-from src.utils import get_config
+from src.utils import dump_list_to_json, get_config
 
 load_dotenv()  # take environment variables from .env.
 
@@ -74,11 +74,16 @@ def CollectMetrics(obj: dict) -> bool:
             gpu_info = None
         obj["gpu"] = gpu_info
         process_data = ProcessMeta()
-        obj["high_memory_processes"] = process_data.top_memory
-        obj["high_cpu_processes"] = process_data.top_cpu
+        obj["high_memory_processes"] = dump_list_to_json(process_data.top_memory)
+        obj["high_cpu_processes"] = dump_list_to_json(process_data.top_cpu)
         # converting to json string
     except Exception as e:
-        logging.error(time, e, "occurred while collecting client metrix")
+        logging.error(
+            str(time.time())
+            .join(" ")
+            .join(str(e))
+            .join(" occurred while collecting client metrics")
+        )
         return False
 
     return True

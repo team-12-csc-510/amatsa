@@ -85,7 +85,7 @@ class Network:
             else:
                 self.time_now = prev_network.time_now
                 self.speed_test = prev_network.speed_test
-                self.up_speed = prev_network.speed_test
+                self.up_speed = prev_network.up_speed
                 self.down_speed = prev_network.down_speed
         else:
             self.down_speed = UNKNOWN
