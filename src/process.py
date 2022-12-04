@@ -13,7 +13,7 @@ import psutil
 class Process:
     """Class to deal with individual processes"""
 
-    def __init__(self, process_id):
+    def __init__(self, process_id: int) -> None:
         self.process_id: int = process_id
         self.memory_percent: float = 0.0
         self.memory_info: dict = dict()
@@ -40,7 +40,7 @@ class ProcessMeta:
 
     process_list: list[Process] = []
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.top_cpu: list[Process] = list()
         self.top_memory: list[Process] = list()
         self.create_lists()
