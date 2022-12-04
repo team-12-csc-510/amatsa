@@ -23,7 +23,7 @@ load_dotenv()  # take environment variables from .env.
 def ReadFileMonitoringFile(filename):
     """This method parses data from the file and returns a dictionary object"""
     file_dict = {}
-    with open(filename,'r') as file:
+    with open(filename, "r") as file:
         file_data = file.readlines()
         for data in file_data:
             print(data)
@@ -34,33 +34,6 @@ def ReadFileMonitoringFile(filename):
 
     return file_dict
 
-def ReadFileMonitoringFile(filename):
-    """This method parses data from the file and returns a dictionary object"""
-    file_dict = {}
-    with open(filename,'r') as file:
-        file_data = file.readlines()
-        for data in file_data:
-            print(data)
-            data_ls = data.split(" ")
-            if data_ls[1] not in file_dict:
-                file_dict[data_ls[1]] = []
-            file_dict[data_ls[1]].append(data_ls[0])
-
-    return file_dict
-
-def ReadFileMonitoringFile(filename):
-    """This method parses data from the file and returns a dictionary object"""
-    file_dict = {}
-    with open(filename,'r') as file:
-        file_data = file.readlines()
-        for data in file_data:
-            print(data)
-            data_ls = data.split(" ")
-            if data_ls[1] not in file_dict:
-                file_dict[data_ls[1]] = []
-            file_dict[data_ls[1]].append(data_ls[0])
-
-    return file_dict
 
 def CollectMetrics(obj: dict) -> bool:
     """This method collects client metrics and returns them in a json"""
@@ -80,8 +53,8 @@ def CollectMetrics(obj: dict) -> bool:
         obj["file_data"] = ReadFileMonitoringFile(filename)
 
         # delete data from the file
-        with open(filename, 'w') as file:
-            pass
+        file = open(filename, "w")
+        file.close()
 
         client_disk_info = fs.retrieve_disk_info()
         obj["disk"] = client_disk_info

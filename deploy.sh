@@ -94,5 +94,3 @@ then
     echo "Failed to start file monitoring."
     exit 1
 fi
-
-
