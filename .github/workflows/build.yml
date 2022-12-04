@@ -37,6 +37,14 @@ jobs:
             mypy tests/
 
       - name: Run tests and coverage report
+        env:
+          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          REGION_NAME: ${{ secrets.REGION_NAME }}
+          SENDER: ${{ secrets.SENDER }}
+          TEST_RECEIVER1: ${{ secrets.TEST_RECEIVER1 }}
+          TEST_RECEIVER2: ${{ secrets.TEST_RECEIVER2 }}
+          CHARSET: ${{ secrets.CHARSET }}
         run: |
           coverage run --source=src --data-file tests/.coverage -m pytest -s
           coverage xml --data-file tests/.coverage -o tests/coverage.xml
@@ -47,13 +55,3 @@ jobs:
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
           ./codecov -t ${CODECOV_TOKEN}
-
-
-#      - name : Send coverage report
-#        run: |
-#          pip install codacy-coverage
-#          export CODACY_PROJECT_TOKEN=${{ secrets.CODACY_PROJECT_TOKEN }}
-#          export CODACY_API_TOKEN=${{ secrets.CODACY_API_TOKEN }}
-#          export CODACY_USERNAME=VSangarya
-#          export CODAY_PROJECT_NAME=AMATSA
-#          python-codacy-coverage -r tests/coverage.xml
