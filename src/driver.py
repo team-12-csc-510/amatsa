@@ -1,6 +1,7 @@
 """Client Code integrates all metrics and send to Elastic Server"""
 
 import logging
+import os
 import sys
 import time
 from datetime import datetime
@@ -10,6 +11,7 @@ from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
 
 from src.disk import Disk
+from src.file_monitoring import FileMonitoring
 from src.gpu import GPUdata
 from src.network import Network
 from src.process import ProcessMeta
@@ -17,6 +19,22 @@ from src.system import System
 from src.utils import dump_list_to_json, get_config
 
 load_dotenv()  # take environment variables from .env.
+
+
+def ReadFileMonitoringFile(filename):
+    """This method parses data from the file and returns a dictionary object"""
+    file_dict = {}
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", filename)
+    with open(path, "r") as file:
+        file_data = file.readlines()
+        for data in file_data:
+            print(data)
+            data_ls = data.split(" ")
+            if data_ls[1] not in file_dict:
+                file_dict[data_ls[1]] = []
+            file_dict[data_ls[1]].append(data_ls[0])
+
+    return file_dict
 
 
 def CollectMetrics(obj: dict) -> bool:
@@ -31,7 +49,19 @@ def CollectMetrics(obj: dict) -> bool:
         fs = Disk()
         sy = System()
         net = Network()
-        # disk info
+
+        # read data from the file
+        filename = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "..",
+            FileMonitoring().get_filename(),
+        )
+        obj["file_data"] = ReadFileMonitoringFile(filename)
+
+        # delete data from the file
+        file = open(filename, "w")
+        file.close()
+
         client_disk_info = fs.retrieve_disk_info()
         obj["disk"] = client_disk_info
         # system info
@@ -101,8 +131,8 @@ if __name__ == "__main__":
         # ssl_fingerprint = config["connect"]["tls-fingerprint"]
         es = Elasticsearch(
             hosts=[{"host": "localhost", "port": 9200, "scheme": "http"}],
-            verify_certs=False,
             basic_auth=token,
+            verify_certs=False,
         )
         resp = es.index(index=config["index"]["name"], document=client_json)
     except error_list1 as e:
