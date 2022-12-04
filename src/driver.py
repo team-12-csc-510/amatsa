@@ -1,6 +1,7 @@
 """Client Code integrates all metrics and send to Elastic Server"""
 
 import logging
+import os
 import sys
 import time
 from datetime import datetime
@@ -23,7 +24,8 @@ load_dotenv()  # take environment variables from .env.
 def ReadFileMonitoringFile(filename):
     """This method parses data from the file and returns a dictionary object"""
     file_dict = {}
-    with open(filename, "r") as file:
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", filename)
+    with open(path, "r") as file:
         file_data = file.readlines()
         for data in file_data:
             print(data)
@@ -49,7 +51,11 @@ def CollectMetrics(obj: dict) -> bool:
         net = Network()
 
         # read data from the file
-        filename = FileMonitoring().get_filename()
+        filename = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "..",
+            FileMonitoring().get_filename(),
+        )
         obj["file_data"] = ReadFileMonitoringFile(filename)
 
         # delete data from the file
