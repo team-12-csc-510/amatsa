@@ -1,8 +1,8 @@
 import time
 from os import path
 
-from watchdog.events import FileSystemEventHandler
-from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler  # type: ignore
+from watchdog.observers import Observer  # type: ignore
 
 
 class FileMonitoring:
