@@ -76,9 +76,9 @@ def test_macadd():
         net_obj.get_network_info()
         net_obj.fill_network_info(json)
         if not re.match(
-                r"([0-9a-fA-F]{2}[-:]){5}[0-9a-fA-F]{2}$",
-                json["mac_address"],
-                re.IGNORECASE,
+            r"([0-9a-fA-F]{2}[-:]){5}[0-9a-fA-F]{2}$",
+            json["mac_address"],
+            re.IGNORECASE,
         ):
             success = False
     except Exception as e:
@@ -88,6 +88,8 @@ def test_macadd():
 
 
 def mock_mac_add():
-    return "02:00:00:%02x:%02x:%02x" % (random.randint(0, 255),
-                                        random.randint(0, 255),
-                                        random.randint(0, 255))
+    return "02:00:00:%02x:%02x:%02x" % (
+        random.randint(0, 255),
+        random.randint(0, 255),
+        random.randint(0, 255),
+    )
