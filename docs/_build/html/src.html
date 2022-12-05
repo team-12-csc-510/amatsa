@@ -80,7 +80,8 @@
 <dt class="sig sig-object py" id="src.disk.Disk.format_darwin">
 <span class="sig-name descname"><span class="pre">format_darwin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.disk.Disk.format_darwin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format disk data for macOS,
-summarize all paritions into the disk it belons to</p>
+summarize all partitions into the disk it belongs to</p>
+<p>:param data : disk data sent to be formatted</p>
 </dd></dl>
 
 <dl class="py method">
@@ -99,12 +100,20 @@ summarize all paritions into the disk it belons to</p>
 <dt class="sig sig-object py" id="src.driver.CollectMetrics">
 <span class="sig-prename descclassname"><span class="pre">src.driver.</span></span><span class="sig-name descname"><span class="pre">CollectMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#src.driver.CollectMetrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method collects client metrics and returns them in a json</p>
+<p>The measure_energy decorator is used to send a pandas data frame
+containing information regarding the energy consumption of the host
+machine</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.driver.ReadFileMonitoringFile">
 <span class="sig-prename descclassname"><span class="pre">src.driver.</span></span><span class="sig-name descname"><span class="pre">ReadFileMonitoringFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.driver.ReadFileMonitoringFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method parses data from the file and returns a dictionary object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – name of file containing data to be extracted in the dictionary</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -122,7 +131,8 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.get_relative_path">
 <span class="sig-name descname"><span class="pre">get_relative_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring.get_relative_path" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns relative path</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.on_closed">
@@ -149,12 +159,7 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.on_deleted">
 <span class="sig-name descname"><span class="pre">on_deleted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring.on_deleted" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called when a file or directory is deleted.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>event</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DirDeletedEvent</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">FileDeletedEvent</span></code>) – Event representing file/directory deletion.</p>
-</dd>
-</dl>
+<dd><p>updates the event in respective file</p>
 </dd></dl>
 
 <dl class="py method">
@@ -173,7 +178,8 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.get_filename">
 <span class="sig-name descname"><span class="pre">get_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.get_filename" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return the file that is being monitored.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.on_any_event">
@@ -188,12 +194,14 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.read_data">
 <span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.read_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Reads and prints the data from the monitored file</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.start_file_monitoring">
 <span class="sig-name descname"><span class="pre">start_file_monitoring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.start_file_monitoring" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Observes any change or modification in the monitored file</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -209,7 +217,8 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.gpu.GPUdata.check_attr">
 <span class="sig-name descname"><span class="pre">check_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.gpu.GPUdata.check_attr" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return the value of indicated attribute</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="src.gpu.GPUdata.gpudata">
@@ -219,7 +228,9 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.gpu.GPUdata.retrieve_gpu_info">
 <span class="sig-name descname"><span class="pre">retrieve_gpu_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.gpu.GPUdata.retrieve_gpu_info" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>retrieve the GPU information like name, uuid,serial_number
+load, total_memory, memory_free in the gpu dictionary.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -240,7 +251,8 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.network.Network.connect_status">
 <span class="sig-name descname"><span class="pre">connect_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.network.Network.connect_status" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>checks if the connection can be established</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="src.network.Network.connected_interface">
@@ -260,17 +272,21 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.network.Network.fill_network_info">
 <span class="sig-name descname"><span class="pre">fill_network_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.network.Network.fill_network_info" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>puts the network information in the json to be visualized later</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.network.Network.get_network_info">
 <span class="sig-name descname"><span class="pre">get_network_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.network.Network.get_network_info" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Checks the network information like mac address,
+hostname, download and upload speed</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.network.Network.get_saved_network_details">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_saved_network_details</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.network.Network.get_saved_network_details" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Fetches the network details  from the saved file.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="src.network.Network.hostname">
@@ -290,7 +306,10 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.network.Network.save_network_details">
 <span class="sig-name descname"><span class="pre">save_network_details</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#src.network.Network.save_network_details" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Saves the network details in order to avoid doing the
+network speed test again and again.
+Instead the test will only be done when there is an IP change</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="src.network.Network.speed_test">
@@ -326,12 +345,15 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="src.process.Process.get_process_detail">
 <span class="sig-name descname"><span class="pre">get_process_detail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.process.Process.get_process_detail" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Fetches the Process details like CPU usage,
+process name, Memory usage and memory information</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="src.process.Process.update_cpu">
 <span class="sig-name descname"><span class="pre">update_cpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.process.Process.update_cpu" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Updates the CPU usage value</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -438,22 +460,28 @@ summarize all paritions into the disk it belons to</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="src.utils.check_time_delta">
 <span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">check_time_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#src.utils.check_time_delta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Check whether the change in time is more than 15min.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.utils.fire_alarm">
 <span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">fire_alarm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alarm_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.config.html#src.config.threshold.AlarmType" title="src.config.threshold.AlarmType"><span class="pre">src.config.threshold.AlarmType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.utils.fire_alarm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>This method is used to send Alert notification mail</p>
+<p>:param alarm_type : contains Alert details
+:type alarm_type : AlarmType</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.utils.get_config">
 <span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#src.utils.get_config" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>returns the config information from amatsa-client.yml</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.utils.size_in_gb">
 <span class="sig-prename descclassname"><span class="pre">src.utils.</span></span><span class="sig-name descname"><span class="pre">size_in_gb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">byte</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#src.utils.size_in_gb" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Converts bytes used in terms of Giga Bytes</p>
+</dd></dl>
 
 </section>
 <section id="module-src">
