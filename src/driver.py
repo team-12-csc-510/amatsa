@@ -35,7 +35,9 @@ load_dotenv()  # take environment variables from .env.
 
 
 def ReadFileMonitoringFile(filename):
-    """This method parses data from the file and returns a dictionary object"""
+    """This method parses data from the file and returns a dictionary object
+
+    :param filename: name of file containing data to be extracted in the dictionary"""
     file_dict = {}
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", filename)
     with open(path, "r") as file:
@@ -51,7 +53,11 @@ def ReadFileMonitoringFile(filename):
 
 @measure_energy(handler=pandas_handler)
 def CollectMetrics(obj: dict) -> bool:
-    """This method collects client metrics and returns them in a json"""
+    """This method collects client metrics and returns them in a json
+
+    The measure_energy decorator is used to send a pandas data frame
+    containing information regarding the energy consumption of the host
+    machine """
     # empty json objects
     agent: dict = {}
     metrics: dict = {}

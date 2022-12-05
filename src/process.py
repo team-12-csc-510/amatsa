@@ -21,6 +21,8 @@ class Process:
         self.process_name: str = ""
 
     def get_process_detail(self):
+        """ Fetches the Process details like CPU usage,
+         process name, Memory usage and memory information"""
         try:
             process = psutil.Process(self.process_id)
             self.cpu_percent = process.cpu_percent()
@@ -32,6 +34,7 @@ class Process:
             logging.info(e, "occurred.")
 
     def update_cpu(self, proc):
+        """ Updates the CPU usage value"""
         self.cpu_percent = proc.cpu_percent()
 
 
@@ -75,9 +78,7 @@ class ProcessMeta:
 
     def retrieve_process_info(self):
         """Retrieve process  information, format and return it"""
-        data = {}
-        data["high_cpu_processes"] = []
-        data["high_memory_processes"] = []
+        data = {"high_cpu_processes": [], "high_memory_processes": []}
         for x in self.top_cpu:
             each_cpu = {
                 "process_name": x.process_name,

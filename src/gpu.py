@@ -14,6 +14,7 @@ class GPUdata:
         self.gpudata = []
 
     def check_attr(self, attr, val):
+        """ Return the value of indicated attribute """
         try:
             val = getattr(attr, val)
         except (AttributeError, ValueError) as e:
@@ -24,6 +25,8 @@ class GPUdata:
         return val
 
     def retrieve_gpu_info(self):
+        """ retrieve the GPU information like name, uuid,serial_number
+        load, total_memory, memory_free in the gpu dictionary."""
         gpu = GPUtil.getGPUs()
         for x in gpu:
             gpu = {}
