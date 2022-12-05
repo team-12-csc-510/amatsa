@@ -1,5 +1,6 @@
-from src.utils import size_in_gb, get_config, check_time_delta
 import datetime
+
+from src.utils import check_time_delta, get_config, size_in_gb
 
 
 def test_size_in_gb():
@@ -15,7 +16,7 @@ def test_size_in_gb():
 def test_get_config():
     success = True
     try:
-        val = get_config()
+        get_config()
     except Exception as e:
         print(e)
         success = False
