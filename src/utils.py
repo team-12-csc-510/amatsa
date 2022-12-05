@@ -9,13 +9,13 @@ from src.config.threshold import AlarmThreshold, AlarmType  # type: ignore
 
 
 def size_in_gb(byte) -> int:
-    """ Converts bytes used in terms of Giga Bytes"""
+    """Converts bytes used in terms of Giga Bytes"""
     return round(byte / 1024**3, 2)
 
 
 def fire_alarm(alarm_type: AlarmType):
 
-    """ This method is used to send Alert notification mail
+    """This method is used to send Alert notification mail
 
     :param alarm_type : contains Alert details
     :type alarm_type : AlarmType"""
@@ -47,7 +47,7 @@ def fire_alarm(alarm_type: AlarmType):
 
 
 def get_config() -> dict:
-    """ returns the config information from amatsa-client.yml """
+    """returns the config information from amatsa-client.yml"""
     with open(
         os.path.dirname(os.path.realpath(__file__)) + "/config/amatsa-client.yml",
         "r",
@@ -58,7 +58,7 @@ def get_config() -> dict:
 
 
 def check_time_delta(old_time: str) -> bool:
-    """ Check whether the change in time is more than 15min."""
+    """Check whether the change in time is more than 15min."""
     time_now = datetime.now()
     time_as_datetime = datetime.strptime(old_time, "%d/%m/%Y %H:%M:%S")
     if (time_now - time_as_datetime).total_seconds() > 900:

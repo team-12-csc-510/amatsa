@@ -85,4 +85,4 @@ This project uses [GitHub Issues](https://github.com/VSangarya/AMATSA/issues) to
 - Naman Bhagat
 - Ritwik Tiwari
 - Saksham Thakur
-- Shubhender Singh 
+- Shubhender Singh
