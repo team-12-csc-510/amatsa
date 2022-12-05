@@ -17,6 +17,8 @@ from elasticsearch.exceptions import (
     SSLError,
     TransportError,
 )
+from pyJoules.energy_meter import measure_energy  # type: ignore
+from pyJoules.handler.pandas_handler import PandasHandler  # type: ignore
 
 from src.disk import Disk
 from src.file_monitoring import FileMonitoring
@@ -25,6 +27,9 @@ from src.network import Network
 from src.process import ProcessMeta
 from src.system import System
 from src.utils import get_config
+
+pandas_handler = PandasHandler()
+
 
 load_dotenv()  # take environment variables from .env.
 
@@ -41,10 +46,10 @@ def ReadFileMonitoringFile(filename):
             if data_ls[1] not in file_dict:
                 file_dict[data_ls[1]] = []
             file_dict[data_ls[1]].append(data_ls[0])
-
     return file_dict
 
 
+@measure_energy(handler=pandas_handler)
 def CollectMetrics(obj: dict) -> bool:
     """This method collects client metrics and returns them in a json"""
     # empty json objects
@@ -111,11 +116,27 @@ if __name__ == "__main__":
         "time": datetime.utcnow().isoformat() + "Z",
     }
     token = (config["auth"]["username"], config["auth"]["password"])
-    if not CollectMetrics(client_json):
+    status = True
+
+    try:
+        status = CollectMetrics(client_json)
+    except Exception as e:
+        logging.error(e, exc_info=True)
+
+    if not status:
         sys.exit(1)
     # client_json = json.dumps(client_json, indent=2)
     # call pickle function with network creds.
     print("final_json", client_json)
+    df2 = {}
+    try:
+        df = pandas_handler.get_dataframe()
+        df2 = df.to_json(orient="columns")
+
+    except Exception as e:
+        logging.error(e)
+
+    client_json["energy"] = df2
     try:
         # push to elastic
         hosts_config = config["connect"]["endpoint"]
