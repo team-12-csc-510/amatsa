@@ -51,15 +51,15 @@ class ProcessMeta:
             try:
                 if psutil.pid_exists(proc.pid):
                     process_detail = Process(proc.pid)
-                    detail =  process_detail.get_process_detail()
+                    detail = process_detail.get_process_detail()
                     if detail is not None:
                         process_psutil_list.append(detail)
                         self.process_list.append(process_detail)
             except psutil.AccessDenied:
                 logging.info(sys.exc_info()[0], "occurred.")
 
-
         time.sleep(0.1)
+        idx = 0
         for proc in self.process_list:
             proc.update_cpu(process_psutil_list[idx])
             idx += 1
