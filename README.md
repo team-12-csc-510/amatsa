@@ -5,12 +5,12 @@
 [![codecov](https://codecov.io/gh/team-12-csc-510/amatsa/branch/main/graph/badge.svg?token=R5G1DMNTJV)](https://codecov.io/gh/team-12-csc-510/amatsa)
 [![Commit Acitivity](https://img.shields.io/github/commit-activity/m/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
 [![Issues](https://img.shields.io/github/issues/VSangarya/AMATSA?color=red)](https://github.com/VSangarya/AMATSA/issues)
-[![Contributors](https://img.shields.io/github/contributors/VSangarya/AMATSA)](https://github.com/VSangarya/AMATSA/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/graphs/contributors)
 [![License](https://img.shields.io/github/license/VSangarya/AMATSA)](LICENSE)
 ![Languages](https://img.shields.io/github/languages/count/VSangarya/AMATSA)
-[![Code Size](https://img.shields.io/github/languages/code-size/VSangarya/AMATSA)](src)
+[![Code Size](https://img.shields.io/github/languages/code-size/team-12-csc-510/amatsa)](src)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE-OF-CONDUCT.md)
-[![Repo Size](https://img.shields.io/github/repo-size/VSangarya/AMATSA)](https://github.com/VSangarya/AMATSA/)
+[![Repo Size](https://img.shields.io/github/repo-size/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
 
 Have you ever reported to your organization's IT team that your machine is slow or running out of disk space? Well, I guess most of us have done this at some point. What if your IT team can be proactive and give you a new disk (or a new asset to meet your workload!) before you even go to them?
 
