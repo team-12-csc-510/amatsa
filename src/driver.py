@@ -17,8 +17,8 @@ from elasticsearch.exceptions import (
     SSLError,
     TransportError,
 )
-from pyJoules.energy_meter import measure_energy # type: ignore
-from pyJoules.handler.pandas_handler import PandasHandler # type: ignore
+from pyJoules.energy_meter import measure_energy  # type: ignore
+from pyJoules.handler.pandas_handler import PandasHandler  # type: ignore
 
 from src.disk import Disk
 from src.file_monitoring import FileMonitoring
