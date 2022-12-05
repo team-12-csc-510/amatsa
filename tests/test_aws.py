@@ -1,6 +1,6 @@
 import boto3
 import pytest
-import sure  # noqa # pylint: disable=unused-import
+import sure  # type: ignore
 from botocore.exceptions import ClientError
 from mock import MagicMock, patch
 from moto import mock_ses
