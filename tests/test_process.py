@@ -53,5 +53,4 @@ def test_retrieve_info():
         meta.retrieve_process_info()
     except Exception as e:
         print(e)
-        success = False
     assert success, "Failed to retrieve information in the desired format"
