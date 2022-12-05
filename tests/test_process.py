@@ -9,6 +9,7 @@ def test_process_init():
     try:
         _ = Process(1)
     except Exception as e:
+        print(e)
         success = False
     assert success, "Failed to initialize Process()"
 
@@ -17,7 +18,7 @@ def test_process_detail():
     success = True
     try:
         process = Process(1)
-        data = process.get_process_detail()
+        process.get_process_detail()
     except Exception as e:
         print("Failed to collect process details", e)
         success = False
@@ -38,8 +39,9 @@ def test_update_cpu():
 def test_process_meta():
     success = True
     try:
-        _ = ProcessMeta()
+        ProcessMeta()
     except Exception as e:
+        print(e)
         success = False
     assert success, "Failed to initialize ProcessMeta()"
 
@@ -50,5 +52,6 @@ def test_retrieve_info():
         meta = ProcessMeta()
         meta.retrieve_process_info()
     except Exception as e:
+        print(e)
         success = False
     assert success, "Failed to retrieve information in the desired format"
