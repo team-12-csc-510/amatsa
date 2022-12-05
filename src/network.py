@@ -41,6 +41,7 @@ class Network:
         self.connection_status = False
 
     def connect_status(self):
+        """ checks if the connection can be established """
         try:
             host = "http://google.com"
             with urlopen(host):  # Python 3.x
@@ -54,6 +55,8 @@ class Network:
             self.connection_status = False
 
     def get_network_info(self):
+        """ Checks the network information like mac address,
+        hostname, download and upload speed """
         self.connect_status()
         mac = get_mac()
         do_speedtest = False
@@ -106,6 +109,7 @@ class Network:
             self.save_network_details()
 
     def fill_network_info(self, json: dict):
+        """ puts the network information in the json to be visualized later"""
         json["mac_address"] = self.mac_address
         json["ip_address"] = self.ip_address
         json["hostname"] = self.hostname
@@ -116,6 +120,9 @@ class Network:
         json["time_now"] = self.time_now
 
     def save_network_details(self) -> None:
+        """ Saves the network details in order to avoid doing the
+        network speed test again and again.
+        Instead the test will only be done when there is an IP change"""
         with open(
             os.path.join(
                 os.path.dirname(os.path.abspath(__file__)), "../data/network.pickle"
@@ -126,6 +133,8 @@ class Network:
 
     @staticmethod
     def get_saved_network_details():
+
+        """Fetches the network details  from the saved file. """
         if not os.path.exists(
             os.path.join(
                 os.path.dirname(os.path.abspath(__file__)), "../data/network.pickle"

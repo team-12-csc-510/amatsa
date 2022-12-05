@@ -32,7 +32,9 @@ class Disk:
 
     def format_darwin(self, data):
         """Format disk data for macOS,
-        summarize all paritions into the disk it belons to
+        summarize all partitions into the disk it belongs to
+
+        :param data : disk data sent to be formatted
         """
         disk_nums = [[] for i in range(len(data["disk"]))]
         for i in range(0, len(disk_nums)):
