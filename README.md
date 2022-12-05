@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/team-12-csc-510/amatsa/branch/main/graph/badge.svg?token=R5G1DMNTJV)](https://codecov.io/gh/team-12-csc-510/amatsa)
 [![Commit Acitivity](https://img.shields.io/github/commit-activity/m/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
 [![Issues](https://img.shields.io/github/issues/VSangarya/AMATSA?color=red)](https://github.com/VSangarya/AMATSA/issues)
-[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/pulse)
 [![License](https://img.shields.io/github/license/VSangarya/AMATSA)](LICENSE)
 ![Languages](https://img.shields.io/github/languages/count/VSangarya/AMATSA)
 [![Code Size](https://img.shields.io/github/languages/code-size/team-12-csc-510/amatsa)](src)
