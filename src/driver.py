@@ -46,7 +46,6 @@ def ReadFileMonitoringFile(filename):
             if data_ls[1] not in file_dict:
                 file_dict[data_ls[1]] = []
             file_dict[data_ls[1]].append(data_ls[0])
-
     return file_dict
 
 
@@ -117,6 +116,7 @@ if __name__ == "__main__":
         "time": datetime.utcnow().isoformat() + "Z",
     }
     token = (config["auth"]["username"], config["auth"]["password"])
+    status = True
 
     try:
         status = CollectMetrics(client_json)
@@ -137,7 +137,6 @@ if __name__ == "__main__":
         logging.error(e)
 
     client_json["energy"] = df2
-    # client_json = client_json + df2
     try:
         # push to elastic
         hosts_config = config["connect"]["endpoint"]
