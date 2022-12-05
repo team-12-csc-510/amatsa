@@ -1,5 +1,4 @@
 """File contains util methods used by all modules"""
-import json
 import os
 from datetime import datetime
 
@@ -14,6 +13,7 @@ def size_in_gb(byte) -> int:
 
 
 def fire_alarm(alarm_type: AlarmType):
+    return
     ses_object = SES(
         recipient=[os.environ["TEST_RECEIVER1"], os.environ["TEST_RECEIVER2"]]
     )
@@ -58,10 +58,3 @@ def check_time_delta(old_time: str) -> bool:
         return True
     else:
         return False
-
-
-def dump_list_to_json(lst: list):
-    json_list = []
-    for element in lst:
-        json_list.append(json.dumps(element.__dict__))
-    return json_list
