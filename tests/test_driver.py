@@ -1,25 +1,35 @@
 """Tests on driver code"""
-
 import json
 from datetime import datetime
+from typing import Dict
 
-from src.driver import CollectMetrics
+from mock import MagicMock, patch
+
+from src import driver
 
 
-def test_data_collection():
+@patch("pyJoules.energy_meter.EnergyMeter.start")
+@patch("pyJoules.energy_meter.EnergyMeter.stop")
+def test_data_collection(stop: MagicMock, start: MagicMock):
     success = True
-    data = {}
+    data: Dict = {}
+    start.return_value = {}
+    stop.return_value = {}
     try:
-        if not CollectMetrics(data):
+        if not driver.CollectMetrics(data):
             success = False
     except ValueError:  # pylint: disable=bare-except
         success = False
     assert success, "Failed to collect metrics"
 
 
-def test_json_validation():
+@patch("pyJoules.energy_meter.EnergyMeter.start")
+@patch("pyJoules.energy_meter.EnergyMeter.stop")
+def test_json_validation(stop: MagicMock, start: MagicMock):
     success = True
     client_json = {}
+    start.return_value = {}
+    stop.return_value = {}
     try:
         # dummy meta-data fields
         version = "1.0"
@@ -28,7 +38,7 @@ def test_json_validation():
             "time": datetime.utcnow().isoformat() + "Z",
         }
 
-        if CollectMetrics(client_json):
+        if driver.CollectMetrics(client_json):
             _ = json.loads(json.dumps(client_json, indent=2))
             print(json.dumps(client_json, indent=2))
 
