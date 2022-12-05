@@ -1,17 +1,27 @@
 """Client Code integrates all metrics and send to Elastic Server"""
 
 import logging
+import os
 import sys
 import time
 from datetime import datetime
 
-import elasticsearch as k
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
+from elasticsearch.exceptions import (
+    BadRequestError,
+    ConflictError,
+    ConnectionError,
+    NotFoundError,
+    SerializationError,
+    SSLError,
+    TransportError,
+)
 from pyJoules.energy_meter import measure_energy
 from pyJoules.handler.pandas_handler import PandasHandler
 
 from src.disk import Disk
+from src.file_monitoring import FileMonitoring
 from src.gpu import GPUdata
 from src.network import Network
 from src.process import ProcessMeta
@@ -22,6 +32,22 @@ pandas_handler = PandasHandler()
 
 
 load_dotenv()  # take environment variables from .env.
+
+
+def ReadFileMonitoringFile(filename):
+    """This method parses data from the file and returns a dictionary object"""
+    file_dict = {}
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", filename)
+    with open(path, "r") as file:
+        file_data = file.readlines()
+        for data in file_data:
+            print(data)
+            data_ls = data.split(" ")
+            if data_ls[1] not in file_dict:
+                file_dict[data_ls[1]] = []
+            file_dict[data_ls[1]].append(data_ls[0])
+
+    return file_dict
 
 
 @measure_energy(handler=pandas_handler)
@@ -37,7 +63,19 @@ def CollectMetrics(obj: dict) -> bool:
         fs = Disk()
         sy = System()
         net = Network()
-        # disk info
+
+        # read data from the file
+        filename = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "..",
+            FileMonitoring().get_filename(),
+        )
+        obj["file_data"] = ReadFileMonitoringFile(filename)
+
+        # delete data from the file
+        file = open(filename, "w")
+        file.close()
+
         client_disk_info = fs.retrieve_disk_info()
         obj["disk"] = client_disk_info
         # system info
@@ -56,11 +94,13 @@ def CollectMetrics(obj: dict) -> bool:
             gpu_info = None
         obj["gpu"] = gpu_info
         process_data = ProcessMeta()
-        obj["high_memory_processes"] = process_data.top_memory
-        obj["high_cpu_processes"] = process_data.top_cpu
-        # converting to json string
+        val = process_data.retrieve_process_info()
+        obj["high_memory_process"] = val[1]
+        obj["high_cpu_process"] = val[0]
     except Exception as e:
-        logging.error(time, e, "occurred while collecting client metrix")
+        logging.error(
+            str(time.time()) + " " + str(e) + "occurred while collecting client metrics"
+        )
         return False
 
     return True
@@ -68,20 +108,6 @@ def CollectMetrics(obj: dict) -> bool:
 
 if __name__ == "__main__":
     client_json = {}
-    error_list = [k.ApiError, k.AuthenticationException, k.AuthorizationException]
-    error_list.extend(
-        [
-            k.BadRequestError,
-            k.ConflictError,
-            k.ConnectionError,
-            k.ConnectionTimeout,
-            k.NotFoundError,
-        ]
-    )
-    error_list.extend(
-        [k.SerializationError, k.SSLError, k.TransportError, k.UnsupportedProductError]
-    )
-    error_list1 = tuple(error_list)
     # read config from yml file
     config = get_config()
     # collect meta-data fields
@@ -116,9 +142,21 @@ if __name__ == "__main__":
         # push to elastic
         hosts_config = config["connect"]["endpoint"]
         # ssl_fingerprint = config["connect"]["tls-fingerprint"]
-        es = Elasticsearch(hosts=hosts_config, verify_certs=False, basic_auth=token)
+        es = Elasticsearch(
+            hosts=[{"host": "localhost", "port": 9200, "scheme": "http"}],
+            basic_auth=token,
+            verify_certs=False,
+        )
         resp = es.index(index=config["index"]["name"], document=client_json)
-    except error_list1 as e:
+    except (
+        ConnectionError,
+        SSLError,
+        TransportError,
+        SerializationError,
+        BadRequestError,
+        ConflictError,
+        NotFoundError,
+    ) as e:
         logging.exception(
             str(time.time()) + " " + str(e) + "occured while using elastic search"
         )

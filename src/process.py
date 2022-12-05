@@ -13,7 +13,7 @@ import psutil
 class Process:
     """Class to deal with individual processes"""
 
-    def __init__(self, process_id):
+    def __init__(self, process_id: int) -> None:
         self.process_id: int = process_id
         self.memory_percent: float = 0.0
         self.memory_info: dict = dict()
@@ -28,8 +28,8 @@ class Process:
             self.memory_info = process.memory_info()
             self.process_name = process.name()
             return process
-        except psutil.ZombieProcess:
-            logging.info(sys.exc_info()[0], "occurred.")
+        except Exception as e:
+            logging.info(e, "occurred.")
 
     def update_cpu(self, proc):
         self.cpu_percent = proc.cpu_percent()
@@ -40,7 +40,7 @@ class ProcessMeta:
 
     process_list: list[Process] = []
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.top_cpu: list[Process] = list()
         self.top_memory: list[Process] = list()
         self.create_lists()
@@ -49,9 +49,10 @@ class ProcessMeta:
         process_psutil_list = []
         for proc in psutil.process_iter():
             try:
-                process_detail = Process(proc.pid)
-                process_psutil_list.append(process_detail.get_process_detail())
-                self.process_list.append(process_detail)
+                if psutil.pid_exists(proc.pid):
+                    process_detail = Process(proc.pid)
+                    process_psutil_list.append(process_detail.get_process_detail())
+                    self.process_list.append(process_detail)
             except psutil.AccessDenied:
                 logging.info(sys.exc_info()[0], "occurred.")
 
@@ -70,3 +71,30 @@ class ProcessMeta:
             self.process_list, key=lambda x: x.cpu_percent, reverse=True
         )
         self.top_cpu = cpu_sorted_list[:5]
+
+    def retrieve_process_info(self):
+        """Retrieve process  information, format and return it"""
+        data = {}
+        data["high_cpu_processes"] = []
+        data["high_memory_processes"] = []
+        for x in self.top_cpu:
+            each_cpu = {
+                "process_name": x.process_name,
+                "process_id": x.process_id,
+                "memory_percent": x.cpu_percent,
+                "cpu_percent": x.memory_percent,
+                "memory_info": x.memory_info,
+            }
+            data["high_cpu_processes"].append(each_cpu)
+
+        for x in self.top_memory:
+            each_memory = {
+                "process_name": x.process_name,
+                "process_id": x.process_id,
+                "memory_percent": x.cpu_percent,
+                "cpu_percent": x.memory_percent,
+                "memory_info": x.memory_info,
+            }
+            data["high_memory_processes"].append(each_memory)
+
+        return data["high_memory_processes"], data["high_cpu_processes"]

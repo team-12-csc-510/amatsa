@@ -20,20 +20,20 @@ while true; do
 done
 
 # check python3
-echo "Checking if python3 requisites are met..."
-pyver=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
-if [ $? -eq 0 ]
-then
-    split=(${pyver//./ })
-    if [ "${split[0]}" -eq "3" ] && [ "${split[1]}" -lt "10" ]
-    then
-        echo "Found python v${split[0]}.${split[1]}. Install Python v3.10+ and try again."
-        exit 1
-    fi
-else
-    echo "python3 not found. Install v3.10+ and begin setup again."
-    exit 1
-fi
+#echo "Checking if python3 requisites are met..."
+#pyver=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:3])))')
+#if [ $? -eq 0 ]
+#then
+#    split=(${pyver//./ })
+#    if [ "${split[0]}" -eq "3" ] && [ "${split[1]}" -lt "10" ]
+#    then
+#        echo "Found python v${split[0]}.${split[1]}. Install Python v3.10+ and try again."
+#        exit 1
+#    fi
+#else
+#    echo "python3 not found. Install v3.10+ and begin setup again."
+#    exit 1
+#fi
 
 echo "python3 [OK]"
 
@@ -72,9 +72,11 @@ fi
 echo "dependency libs installed [OK]"
 
 # setup scheduled job
-pypath=$(whereis python | awk '{print $2}')
+
+pypath=$(which python3 | awk '{print $0}')
 script=$(pwd)
 script="${script}/src/driver.py"
+echo ${pypath}
 crontab -l | { cat; echo "*/$1 * * * * $pypath $script"; } | crontab -
 if [ $? != "0" ]
 then
@@ -84,3 +86,11 @@ fi
 
 echo "cron-job setup [OK]"
 echo "Installation completed successfully!"
+
+
+$pypath -c 'from src import file_monitoring ; file_monitor = file_monitoring.FileMonitoring() ; file_monitor.start_file_monitoring()'
+if [ $? != "0" ]
+then
+    echo "Failed to start file monitoring."
+    exit 1
+fi
