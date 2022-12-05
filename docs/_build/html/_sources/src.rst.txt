@@ -29,6 +29,14 @@ src.driver module
    :undoc-members:
    :show-inheritance:
 
+src.file\_monitoring module
+---------------------------
+
+.. automodule:: src.file_monitoring
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 src.gpu module
 --------------
 
