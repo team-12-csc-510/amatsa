@@ -5,8 +5,8 @@ from datetime import datetime
 
 import yaml
 
-from aws.client.ses import SES
-from config.threshold import AlarmThreshold, AlarmType
+from src.aws.client.ses import SES  # type: ignore
+from src.config.threshold import AlarmThreshold, AlarmType  # type: ignore
 
 
 def size_in_gb(byte) -> int:
@@ -14,7 +14,6 @@ def size_in_gb(byte) -> int:
 
 
 def fire_alarm(alarm_type: AlarmType):
-    return
     ses_object = SES(
         recipient=[os.environ["TEST_RECEIVER1"], os.environ["TEST_RECEIVER2"]]
     )
@@ -43,7 +42,6 @@ def fire_alarm(alarm_type: AlarmType):
 
 
 def get_config() -> dict:
-    config = {}
     with open(
         os.path.dirname(os.path.realpath(__file__)) + "/config/amatsa-client.yml",
         "r",

@@ -6,9 +6,17 @@ import sys
 import time
 from datetime import datetime
 
-import elasticsearch as k
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
+from elasticsearch.exceptions import (
+    BadRequestError,
+    ConflictError,
+    ConnectionError,
+    NotFoundError,
+    SerializationError,
+    SSLError,
+    TransportError,
+)
 
 from src.disk import Disk
 from src.file_monitoring import FileMonitoring
@@ -97,20 +105,6 @@ def CollectMetrics(obj: dict) -> bool:
 
 if __name__ == "__main__":
     client_json = {}
-    error_list = [k.ApiError, k.AuthenticationException, k.AuthorizationException]
-    error_list.extend(
-        [
-            k.BadRequestError,
-            k.ConflictError,
-            k.ConnectionError,
-            k.ConnectionTimeout,
-            k.NotFoundError,
-        ]
-    )
-    error_list.extend(
-        [k.SerializationError, k.SSLError, k.TransportError, k.UnsupportedProductError]
-    )
-    error_list1 = tuple(error_list)
     # read config from yml file
     config = get_config()
     # collect meta-data fields
@@ -135,7 +129,15 @@ if __name__ == "__main__":
             verify_certs=False,
         )
         resp = es.index(index=config["index"]["name"], document=client_json)
-    except error_list1 as e:
+    except (
+        ConnectionError,
+        SSLError,
+        TransportError,
+        SerializationError,
+        BadRequestError,
+        ConflictError,
+        NotFoundError,
+    ) as e:
         logging.exception(
             str(time.time()) + " " + str(e) + "occured while using elastic search"
         )

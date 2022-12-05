@@ -1,7 +1,7 @@
 import logging
 import os
 
-from botocore.exceptions import ClientError
+from botocore.exceptions import ClientError, HTTPClientError
 
 from src.aws import AWSClient
 
@@ -48,7 +48,7 @@ class SES:
                 # ConfigurationSetName=CONFIGURATION_SET,
             )
         # Display an error if something goes wrong.
-        except ClientError as e:
+        except (ClientError, HTTPClientError) as e:
             logging.error(e.response["Error"]["Message"])
         else:
             message_id = response["MessageId"]

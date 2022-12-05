@@ -11,7 +11,7 @@ class AWS:
 class AWSResource(AWS):
     def __init__(self, service_name: str):
         super().__init__(service_name)
-        self._resource = boto3.resource(
+        self._resource = boto3.resource(  # type: ignore
             service_name,
             aws_access_key_id=os.environ["ACCESS_KEY"],
             aws_secret_access_key=os.environ["SECRET_KEY"],
@@ -22,10 +22,10 @@ class AWSResource(AWS):
         return self._resource
 
 
-class AWSClient(AWS):
+class AWSClient(AWS):  # type: ignore
     def __init__(self, service_name: str):
         super().__init__(service_name)
-        self._client = boto3.client(
+        self._client = boto3.client(  # type: ignore
             service_name,
             aws_access_key_id=os.environ["ACCESS_KEY"],
             aws_secret_access_key=os.environ["SECRET_KEY"],
