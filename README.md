@@ -3,7 +3,7 @@
 [![Build](https://github.com/team-12-csc-510/amatsa/actions/workflows/build.yml/badge.svg)](https://github.com/VSangarya/AMATSA/actions/workflows/build.yml)
 [![DOI](https://zenodo.org/badge/567082055.svg)](https://zenodo.org/badge/latestdoi/567082055)
 [![codecov](https://codecov.io/gh/team-12-csc-510/amatsa/branch/main/graph/badge.svg?token=R5G1DMNTJV)](https://codecov.io/gh/team-12-csc-510/amatsa)
-[![Commit Acitivity](https://img.shields.io/github/commit-activity/w/sakshamrzt/AMATSA)](https://github.com/VSangarya/AMATSA/pulse)
+[![Commit Acitivity](https://img.shields.io/github/commit-activity/m/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
 [![Issues](https://img.shields.io/github/issues/VSangarya/AMATSA?color=red)](https://github.com/VSangarya/AMATSA/issues)
 [![Contributors](https://img.shields.io/github/contributors/VSangarya/AMATSA)](https://github.com/VSangarya/AMATSA/graphs/contributors)
 [![License](https://img.shields.io/github/license/VSangarya/AMATSA)](LICENSE)
