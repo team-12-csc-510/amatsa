@@ -1,5 +1,7 @@
-from src.file_monitoring import FileMonitoring
 import os
+
+from src.file_monitoring import FileMonitoring
+
 
 def test_file_init():
     success = True
@@ -36,21 +38,10 @@ def test_start_file_monitoring():
 def test_read_data():
     success = True
     try:
+        f = open("file_monitoring_data", "w+")
         monitor = FileMonitoring()
         monitor.read_data()
-    except Exception as e:
-        print(e)
-        success = False
-    assert success, "Failed to read data"
-
-
-def test_read_data():
-    success = True
-    try:
-        f = open('file_monitoring_data', "w+")
-        monitor = FileMonitoring()
-        monitor.read_data()
-        os.remove('file_monitoring_data')
+        os.remove("file_monitoring_data")
     except Exception as e:
         print(e)
         success = False
@@ -60,9 +51,8 @@ def test_read_data():
 def test_FolderMonitoring_init():
     success = True
     try:
-        _ = FileMonitoring.FolderMonitoring('file_monitoring_data')
+        _ = FileMonitoring.FolderMonitoring("file_monitoring_data")
     except Exception as e:
         print(e)
         success = False
     assert success, "Failed to initialize folder monitoring"
-
