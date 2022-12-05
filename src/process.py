@@ -51,17 +51,18 @@ class ProcessMeta:
             try:
                 if psutil.pid_exists(proc.pid):
                     process_detail = Process(proc.pid)
-                    process_psutil_list.append(process_detail.get_process_detail())
-                    self.process_list.append(process_detail)
+                    detail = process_detail.get_process_detail()
+                    if detail is not None:
+                        process_psutil_list.append(detail)
+                        self.process_list.append(process_detail)
             except psutil.AccessDenied:
                 logging.info(sys.exc_info()[0], "occurred.")
 
-        idx = 0
         time.sleep(0.1)
+        idx = 0
         for proc in self.process_list:
-            if process_psutil_list[idx] is not None:
-                proc.update_cpu(process_psutil_list[idx])
-                idx += 1
+            proc.update_cpu(process_psutil_list[idx])
+            idx += 1
 
         memory_sorted_list = sorted(
             self.process_list, key=lambda x: x.memory_percent, reverse=True
