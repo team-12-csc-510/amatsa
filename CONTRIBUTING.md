@@ -41,6 +41,8 @@ To work on a new feature or bugfix:
 
 This project uses Python linter to ensure the code style is uniform and conforms to a well known syntactical style. [Pylint analyser](https://pylint.pycqa.org/en/latest/)
 
+The project incorporates a pre commit file which should be run using pre-commit run --all before commiting the code.
+
 ## How to report an issue
 
 This project uses [GitHub Issues](https://github.com/VSangarya/AMATSA/issues) to track bugs.
@@ -69,10 +71,18 @@ This project uses [GitHub Issues](https://github.com/VSangarya/AMATSA/issues) to
 - Give a concise summary and a short description of what changed in files that have beed added/modified.
 - Link the issue to the pull request if fixing a reported bug.
 
-## Contributors
+## Original Contributors
 
 - Atharv Pandit
 - Muhammad Ali Qureshi
 - Shivangi Chopra
 - Vaishnav Nagarajan
 - Vishwesh Sangarya
+
+## Improvement Contributors
+
+- Aditya Tewari
+- Naman Bhagat
+- Ritwik Tiwari
+- Saksham Thakur
+- Shubhender Singh 
