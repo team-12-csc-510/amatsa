@@ -13,7 +13,6 @@ def size_in_gb(byte) -> int:
 
 
 def fire_alarm(alarm_type: AlarmType):
-    return
     ses_object = SES(
         recipient=[os.environ["TEST_RECEIVER1"], os.environ["TEST_RECEIVER2"]]
     )
