@@ -1,24 +1,21 @@
 # 🖥 AMATSA
 
-[![Build](https://github.com/VSangarya/AMATSA/actions/workflows/build.yml/badge.svg)](https://github.com/VSangarya/AMATSA/actions/workflows/build.yml)
-<a href="https://doi.org/10.5281/zenodo.7179464"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7179464.svg" alt="DOI"></a>
+[![Build](https://github.com/team-12-csc-510/amatsa/actions/workflows/build.yml/badge.svg)](https://github.com/VSangarya/AMATSA/actions/workflows/build.yml)
+[![DOI](https://zenodo.org/badge/567082055.svg)](https://zenodo.org/badge/latestdoi/567082055)
 [![codecov](https://codecov.io/gh/team-12-csc-510/amatsa/branch/main/graph/badge.svg?token=R5G1DMNTJV)](https://codecov.io/gh/team-12-csc-510/amatsa)
-[![Commit Acitivity](https://img.shields.io/github/commit-activity/w/VSangarya/AMATSA)](https://github.com/VSangarya/AMATSA/pulse)
+[![Commit Acitivity](https://img.shields.io/github/commit-activity/m/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
 [![Issues](https://img.shields.io/github/issues/VSangarya/AMATSA?color=red)](https://github.com/VSangarya/AMATSA/issues)
-[![Contributors](https://img.shields.io/github/contributors/VSangarya/AMATSA)](https://github.com/VSangarya/AMATSA/graphs/contributors)
+[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/graphs/contributors)
 [![License](https://img.shields.io/github/license/VSangarya/AMATSA)](LICENSE)
 ![Languages](https://img.shields.io/github/languages/count/VSangarya/AMATSA)
-[![Code Size](https://img.shields.io/github/languages/code-size/VSangarya/AMATSA)](src)
+[![Code Size](https://img.shields.io/github/languages/code-size/team-12-csc-510/amatsa)](src)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE-OF-CONDUCT.md)
-[![Repo Size](https://img.shields.io/github/repo-size/VSangarya/AMATSA)](https://github.com/VSangarya/AMATSA/)
+[![Repo Size](https://img.shields.io/github/repo-size/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
 
 Have you ever reported to your organization's IT team that your machine is slow or running out of disk space? Well, I guess most of us have done this at some point. What if your IT team can be proactive and give you a new disk (or a new asset to meet your workload!) before you even go to them?
 
 Asset Monitoring and Analytics Tool for sysadmins (we call it AMATSA) is a client-based solution for system administrators to monitor assets in their organization. amatsa-client is cross-platform (Linux, Windows, macOS), can be installed on a server/user PC and takes less than 50MB of disk space at runtime. Once you install the amatsa-client on a host, it will periodically send system metrics (asset info, cpu/memory utilization, network etc.) to the backend server. The backend server runs on Elasticsearch and can be hosted on-premise or in the cloud. Sysadmins can then import our [pre-built](data/kibana/dashboard.ndjson) Kibana dashboard or build custom visualization on top of raw data sent by the clients. The meta data on fields listed [here](data/metrics.json) can be used to create custom visualization dashboards.
 
-## Setting up AMASTA on a PC and exploring the visualization dashboard
-
-https://user-images.githubusercontent.com/68890508/194654605-f23bc6a3-13ba-43b3-b41a-8d8b9015c583.mp4
 
 ## 📖 Usecases
 
@@ -94,12 +91,30 @@ pip install -e .
 - Monitor listening ports across assets to identify which services are listening in your network.
 - Configure a rule file containing filenames to monitor on the client. If the hash of monitored file changes, you can send an event.
 
+## ↑ Implemented Enhancements
+
+### Sending Alerts
+* We are sending alerts to the corresponding user in case some of the resource constraints are exceeeded. The constraints are as follows:
+   * If disk capacity exceeds 80 percent of total available disk.
+   * If CPU load exceed 90 percent of the total usage.
+### Process level information
+* We are now collecting process level information. This includes the process id, process name, memory usage by the process and cpu usage by the process.
+### File Monitoring
+* Monitor the file system to check the client is changing files he/she is not supposed to change. This includes creation, deletion, move and changing the file.
+### Energy metrics
+* We are now tracking the total energy usage of the system.
+### Improved Dashboard
+* A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
+
+## Scaling
+We have achieved a scaling of 10x for the maximum amount of concurrent users. The details can be found [here](https://docs.google.com/document/d/1RdMRLtXNsLXfKQEYGx74gnLFtfKDUw35MHHgc2TtDuA/edit?usp=sharing).
+
 ### ⚙︎📧 Troubleshooting, help and contact information
 
 For any help or assistance regarding the software, please E-mail any of the developers with the query or a detailed description. Additionally, please use issues on GitHub for any software related issues, bugs or questions.
 
-- mquresh@ncsu.edu
-- apandit3@ncsu.edu
-- vnagara3@ncsu.edu
-- schopra4@ncsu.edu
-- lsangar@ncsu.edu
+- sthakur5@ncsu.edu
+- rtiwari2@ncsu.edu
+- ssingh54@ncsu.edu
+- adtewari@ncsu.edu
+- nbhagat2@ncsu.edu
