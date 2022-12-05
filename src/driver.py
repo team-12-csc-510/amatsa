@@ -57,7 +57,7 @@ def CollectMetrics(obj: dict) -> bool:
 
     The measure_energy decorator is used to send a pandas data frame
     containing information regarding the energy consumption of the host
-    machine """
+    machine"""
     # empty json objects
     agent: dict = {}
     metrics: dict = {}

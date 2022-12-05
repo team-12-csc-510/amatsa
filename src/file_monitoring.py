@@ -21,7 +21,7 @@ class FileMonitoring:
         return self.filename
 
     def start_file_monitoring(self):
-        """Observes any change or modification in the monitored file """
+        """Observes any change or modification in the monitored file"""
         my_observe = Observer()
         current_path = path.dirname(__file__)
         monitored_folder = "monitored_folder"
@@ -37,7 +37,7 @@ class FileMonitoring:
 
     def read_data(self):
 
-        """ Reads and prints the data from the monitored file"""
+        """Reads and prints the data from the monitored file"""
         data_file = open("file_monitoring_data", "r")
         print(data_file.readlines())
         data_file.close()
@@ -47,13 +47,13 @@ class FileMonitoring:
             self.filename = filename
 
         def get_relative_path(self, my_path):
-            """ returns relative path """
+            """returns relative path"""
             current_path = path.dirname(__file__)
             start_path = path.abspath(path.join(current_path, ".."))
             return path.relpath(my_path, start=start_path)
 
         def on_deleted(self, event):
-            """ updates the event in respective file"""
+            """updates the event in respective file"""
             file = open(self.filename, "a")
             relative_path = str(self.get_relative_path(event.src_path))
             file.write(relative_path + " " + str(event.event_type) + " " + "\n")
