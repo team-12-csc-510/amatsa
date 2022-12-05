@@ -1,5 +1,4 @@
 """File contains util methods used by all modules"""
-import json
 import os
 from datetime import datetime
 
