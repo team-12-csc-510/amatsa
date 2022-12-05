@@ -101,6 +101,102 @@ summarize all paritions into the disk it belons to</p>
 <dd><p>This method collects client metrics and returns them in a json</p>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="src.driver.ReadFileMonitoringFile">
+<span class="sig-prename descclassname"><span class="pre">src.driver.</span></span><span class="sig-name descname"><span class="pre">ReadFileMonitoringFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.driver.ReadFileMonitoringFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method parses data from the file and returns a dictionary object</p>
+</dd></dl>
+
+</section>
+<section id="module-src.file_monitoring">
+<span id="src-file-monitoring-module"></span><h2>src.file_monitoring module<a class="headerlink" href="#module-src.file_monitoring" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.file_monitoring.</span></span><span class="sig-name descname"><span class="pre">FileMonitoring</span></span><a class="headerlink" href="#src.file_monitoring.FileMonitoring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Monitors changes in a file folder and return file modification/transfer data</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FolderMonitoring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">watchdog.events.FileSystemEventHandler</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.get_relative_path">
+<span class="sig-name descname"><span class="pre">get_relative_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">my_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring.get_relative_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.on_closed">
+<span class="sig-name descname"><span class="pre">on_closed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring.on_closed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a file opened for writing is closed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">FileClosedEvent</span></code>) – Event representing file closing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.on_created">
+<span class="sig-name descname"><span class="pre">on_created</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring.on_created" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a file or directory is created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DirCreatedEvent</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">FileCreatedEvent</span></code>) – Event representing file/directory creation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.on_deleted">
+<span class="sig-name descname"><span class="pre">on_deleted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring.on_deleted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a file or directory is deleted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DirDeletedEvent</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">FileDeletedEvent</span></code>) – Event representing file/directory deletion.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.FolderMonitoring.on_moved">
+<span class="sig-name descname"><span class="pre">on_moved</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.FolderMonitoring.on_moved" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a file or a directory is moved or renamed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DirMovedEvent</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">FileMovedEvent</span></code>) – Event representing file/directory movement.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.get_filename">
+<span class="sig-name descname"><span class="pre">get_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.get_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.on_any_event">
+<span class="sig-name descname"><span class="pre">on_any_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.on_any_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.on_modified">
+<span class="sig-name descname"><span class="pre">on_modified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.on_modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.read_data">
+<span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.read_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.file_monitoring.FileMonitoring.start_file_monitoring">
+<span class="sig-name descname"><span class="pre">start_file_monitoring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.file_monitoring.FileMonitoring.start_file_monitoring" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-src.gpu">
 <span id="src-gpu-module"></span><h2>src.gpu module<a class="headerlink" href="#module-src.gpu" title="Permalink to this headline">¶</a></h2>
