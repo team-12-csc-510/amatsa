@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: kibana
+  name: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: kibana
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/elk: "true"
+        io.kompose.service: kibana
+    spec:
+      containers:
+        - env:
+            - name: KIBANA_SYSTEM_PASSWORD
+          image: kibana
+          name: kibana
+          ports:
+            - containerPort: 5601
+          resources: {}
+          volumeMounts:
+            - mountPath: /usr/share/kibana/config/kibana.yml
+              name: kibana-claim0
+              readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: kibana-claim0
+          persistentVolumeClaim:
+            claimName: kibana-claim0
+            readOnly: true
+status: {}
