@@ -114,9 +114,7 @@ pip install -e .
 
 - A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
 
-### Improved Dashboard
 
-- A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
 
 ### Code formatter and Style Check
 
@@ -143,8 +141,11 @@ We run our hooks on every commit to automatically point out issues in code such 
 By pointing these issues out before code review, this allows a code reviewer to focus on the architecture of a change while not wasting time with trivial style nitpicks.
 
 ## Scaling
-
+### Scaling maximum number of concurrent users
 We have achieved a scaling of 10x for the maximum amount of concurrent users. The details can be found [here](https://docs.google.com/document/d/1RdMRLtXNsLXfKQEYGx74gnLFtfKDUw35MHHgc2TtDuA/edit?usp=sharing).
+
+### Realtime data collection scalability
+- We realized that the initial time of data collection was somewhere in the vicinity of 31 seconds and for this system to represent a more real world scenario we needed to reduce this time. We were able to reduce this time to 0.5 seconds essentially achieving a scalability factor of 62 asymptotically.
 
 ### ⚙︎📧 Troubleshooting, help and contact information
 
