@@ -46,4 +46,3 @@ def test_read_data():
         print(e)
         success = False
     assert success, "Failed to read data"
-
