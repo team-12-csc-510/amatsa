@@ -27,7 +27,7 @@
 |Test cases are routinely executed	| 0 | No chat channel link provided. |
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up	|3| Can be seen in [CONTRIBUTING.md](https://github.com/team-12-csc-510/amatsa/blob/main/CONTRIBUTING.md) |
 |Issues are discussed before they are closed	| 3 | |
-|Chat channel: exists	| 3 | |
+|Chat channel: exists	| 3 | [Whatsapp chat](https://drive.google.com/file/d/1YXNUVuEF9lces3c0Wk0xF-IPV3MIPTJg/view?usp=sharing)|
 |Test cases: a large proportion of the issues related to handling failing cases.	| 3 | Test coverage is good and and can be seen in [here](https://github.com/team-12-csc-510/amatsa/issues?q=is%3Aissue+is%3Aclosed)|
 |Evidence that the whole team is using the same tools: everyone can get to all tools and files	| 3 | Can be seen by the [Pull Requests](https://github.com/team-12-csc-510/amatsa/pulls?q=is%3Apr+is%3Aclosed)|
 |Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)		| 3 |[vscode](https://github.com/team-12-csc-510/amatsa/tree/rubric/.vscode), [pre-commits](https://github.com/team-12-csc-510/amatsa/tree/rubric/.vscode) |
