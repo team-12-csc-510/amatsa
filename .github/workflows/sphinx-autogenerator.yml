@@ -25,7 +25,7 @@ jobs:
                 pip install -e .
             - name: Build documentation and commit
               run: |
-                  git config remote.origin.url 'https://{{ACCESS_TOKEN}}@github.com/team-12-csc-510/amatsa'  
+                  git config remote.origin.url 'https://{{ACCESS_TOKEN}}@github.com/team-12-csc-510/amatsa'
                   sudo apt-get install python3-sphinx
                   sphinx-apidoc -f -o docs src
                   cd docs/
