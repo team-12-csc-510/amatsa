@@ -4,8 +4,9 @@
 [![DOI](https://zenodo.org/badge/567082055.svg)](https://zenodo.org/badge/latestdoi/567082055)
 [![codecov](https://codecov.io/gh/team-12-csc-510/amatsa/branch/main/graph/badge.svg?token=R5G1DMNTJV)](https://codecov.io/gh/team-12-csc-510/amatsa)
 [![Commit Acitivity](https://img.shields.io/github/commit-activity/m/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
-[![Issues](https://img.shields.io/github/issues/VSangarya/AMATSA?color=red)](https://github.com/VSangarya/AMATSA/issues)
-[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/pulse)
+[![Issues](https://img.shields.io/github/issues-closed/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
+[![Issues](https://img.shields.io/github/issues/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
+[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/graphs/contributors)
 [![License](https://img.shields.io/github/license/VSangarya/AMATSA)](LICENSE)
 ![Languages](https://img.shields.io/github/languages/count/VSangarya/AMATSA)
 [![Code Size](https://img.shields.io/github/languages/code-size/team-12-csc-510/amatsa)](src)
@@ -113,40 +114,6 @@ pip install -e .
 ### Improved Dashboard
 
 - A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
-
-### Improved Dashboard
-
-- A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
-
-
-
-https://user-images.githubusercontent.com/112341004/205795229-82140d7e-74bc-4ac9-95a8-7c208c4621cf.mp4
-
-
-
-### Code formatter and Style Check
-
-- We have implemented code formatting and style checks using python packages like
-  - isort
-  - black
-  - flake8
-  - mypy
-
-### Pre-commit hooks
-
-We run our hooks on every commit to automatically point out issues in code such as
-
-- check-yaml
-- end-of-file-fixer
-- trailing-whitespace
-- check-toml
-- mdformat
-- isort
-- black
-- flake8
-- mypy
-
-By pointing these issues out before code review, this allows a code reviewer to focus on the architecture of a change while not wasting time with trivial style nitpicks.
 
 ## Scaling
 
