@@ -27,7 +27,7 @@ class Process:
             process = psutil.Process(self.process_id)
             self.cpu_percent = process.cpu_percent()
             self.memory_percent = process.memory_percent()
-            self.memory_info = process.memory_info()
+            self.memory_info = {}
             self.process_name = process.name()
             return process
         except Exception as e:
