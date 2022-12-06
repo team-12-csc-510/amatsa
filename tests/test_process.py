@@ -36,16 +36,6 @@ def test_update_cpu():
     assert success
 
 
-def test_process_meta():
-    success = True
-    try:
-        ProcessMeta()
-    except Exception as e:
-        print(e)
-        success = False
-    assert success, "Failed to initialize ProcessMeta()"
-
-
 def test_retrieve_info():
     success = True
     try:
