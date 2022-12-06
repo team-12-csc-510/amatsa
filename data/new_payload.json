@@ -1,0 +1,158 @@
+ {
+    "_index": "amatsa",
+    "_id": "EWoZ5YQB-HrHN57vqVEl",
+    "_score": 1,
+    "_source": {
+        "metadata": {
+            "version": "1.0.0",
+            "time": "2022-12-06T01:42:54.537634Z"
+        },
+        "file_data": {
+          "deleted": "a.txt",
+          "created": "b.txt"
+        },
+        "disk": [{
+                "name": "/dev/disk1",
+                "type": "apfs",
+                "total_size": 0.49,
+                "used": 0.02,
+                "free": 0.47,
+                "percentage": 4.08
+            },
+            {
+                "name": "/dev/disk3",
+                "type": "apfs",
+                "total_size": 228.27,
+                "used": 224.6,
+                "free": 3.67,
+                "percentage": 98.39
+            }
+        ],
+        "agent": {
+            "hostname": "sams-MBP.lan",
+            "bios_uuid": "00000000-0000-0000-0000-92df89097371",
+            "platform": "Darwin",
+            "release": "21.6.0",
+            "version": "Darwin Kernel Version 21.6.0: Mon Aug 22 20:20:05 PDT 2022; root:xnu-8020.140.49~2/RELEASE_ARM64_T8101",
+            "machine": "arm64",
+            "is64bit": true,
+            "physical_cores": 8,
+            "logical_cores": 8,
+            "total_memory_gb": 8
+        },
+        "metrics": {
+            "cpu_load_5min": 48.03,
+            "cpu_load_15min": 41.5,
+            "avail_memory_gb": 1.19,
+            "boot_days_ago": 1
+        },
+        "network": {
+            "mac_address": "92:DF:89:09:73:71",
+            "ip_address": "192.168.1.127",
+            "hostname": "sams-MBP.lan",
+            "connected_interface": "utun2",
+            "connection_status": true,
+            "down_speed": 257.02,
+            "up_speed": 8.67,
+            "time_now": "05/12/2022 20:41:33"
+        },
+        "gpu": null,
+        "high_memory_process": [{
+                "process_name": "pycharm",
+                "process_id": 79500,
+                "memory_percent": 26.2,
+                "cpu_percent": 5.467796325683594,
+                "memory_info": {}
+            },
+            {
+                "process_name": "qemu-system-aarch64",
+                "process_id": 16736,
+                "memory_percent": 15.3,
+                "cpu_percent": 5.85784912109375,
+                "memory_info": {}
+            },
+            {
+                "process_name": "Google Chrome Helper (GPU)",
+                "process_id": 1648,
+                "memory_percent": 7.5,
+                "cpu_percent": 0.5598068237304688,
+                "memory_info": {}
+            },
+            {
+                "process_name": "Python",
+                "process_id": 96099,
+                "memory_percent": 3,
+                "cpu_percent": 1.136016845703125,
+                "memory_info": {}
+            },
+            {
+                "process_name": "Discord Helper (Renderer)",
+                "process_id": 65195,
+                "memory_percent": 2.1,
+                "cpu_percent": 0.5340576171875,
+                "memory_info": {}
+            }
+        ],
+        "high_cpu_process": [{
+                "process_name": "qemu-system-aarch64",
+                "process_id": 16736,
+                "memory_percent": 15.3,
+                "cpu_percent": 5.85784912109375,
+                "memory_info": {}
+            },
+            {
+                "process_name": "pycharm",
+                "process_id": 79500,
+                "memory_percent": 26.2,
+                "cpu_percent": 5.467796325683594,
+                "memory_info": {}
+            },
+            {
+                "process_name": "Google Chrome",
+                "process_id": 1636,
+                "memory_percent": 1.8,
+                "cpu_percent": 2.18963623046875,
+                "memory_info": {}
+            },
+            {
+                "process_name": "Google Chrome Helper (Renderer)",
+                "process_id": 95894,
+                "memory_percent": 0.9,
+                "cpu_percent": 1.2760162353515625,
+                "memory_info": {}
+            },
+            {
+                "process_name": "Python",
+                "process_id": 96099,
+                "memory_percent": 3,
+                "cpu_percent": 1.136016845703125,
+                "memory_info": {}
+            }
+        ],
+        "energy": {
+
+            "timestamp": {
+                "0": 1670124966.3470308781
+            },
+            "tag": {
+                "0": "chec"
+            },
+            "duration": {
+                "0": 0.0086376667
+            },
+            "package_0": {
+                "0": 45105.0
+            },
+            "dram_0": {
+                "0": 5615.0
+            },
+            "core_0": {
+                "0": 40772.0
+            },
+            "uncore_0": {
+                "0": 0.0
+
+            }
+        }
+    }
+ }
