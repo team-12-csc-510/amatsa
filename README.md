@@ -114,6 +114,34 @@ pip install -e .
 
 - A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
 
+### Improved Dashboard
+
+- A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
+
+### Code formatter and Style Check
+
+- We have implemented code formatting and style checks using python packages like
+  - isort
+  - black
+  - flake8
+  - mypy
+
+### Pre-commit hooks
+
+We run our hooks on every commit to automatically point out issues in code such as
+
+- check-yaml
+- end-of-file-fixer
+- trailing-whitespace
+- check-toml
+- mdformat
+- isort
+- black
+- flake8
+- mypy
+
+By pointing these issues out before code review, this allows a code reviewer to focus on the architecture of a change while not wasting time with trivial style nitpicks.
+
 ## Scaling
 
 We have achieved a scaling of 10x for the maximum amount of concurrent users. The details can be found [here](https://docs.google.com/document/d/1RdMRLtXNsLXfKQEYGx74gnLFtfKDUw35MHHgc2TtDuA/edit?usp=sharing).

@@ -156,13 +156,13 @@ if __name__ == "__main__":
         )
         resp = es.index(index=config["index"]["name"], document=client_json)
     except (
-            ConnectionError,
-            SSLError,
-            TransportError,
-            SerializationError,
-            BadRequestError,
-            ConflictError,
-            NotFoundError,
+        ConnectionError,
+        SSLError,
+        TransportError,
+        SerializationError,
+        BadRequestError,
+        ConflictError,
+        NotFoundError,
     ) as e:
         logging.exception(
             str(time.time()) + " " + str(e) + "occured while using elastic search"
