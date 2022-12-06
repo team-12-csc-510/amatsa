@@ -47,12 +47,3 @@ def test_read_data():
         success = False
     assert success, "Failed to read data"
 
-
-def test_FolderMonitoring_init():
-    success = True
-    try:
-        _ = FileMonitoring.FolderMonitoring("file_monitoring_data")
-    except Exception as e:
-        print(e)
-        success = False
-    assert success, "Failed to initialize folder monitoring"
