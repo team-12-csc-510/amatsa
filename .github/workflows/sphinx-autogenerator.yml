@@ -25,13 +25,12 @@ jobs:
                 pip install -e .
             - name: Build documentation and commit
               run: |
+                  git config remote.origin.url 'https://{{ACCESS_TOKEN}}@github.com/team-12-csc-510/amatsa'  
                   sudo apt-get install python3-sphinx
                   sphinx-apidoc -f -o docs src
                   cd docs/
                   make html
                   cd ..
-                  git config --global user.name "SSingh-07"
-                  git config --global user.email "shub.bhadauria@gmail.com"
                   git add -f docs/*
                   git commit -m "updating docs" -a || true
                   git push
