@@ -4,8 +4,9 @@
 [![DOI](https://zenodo.org/badge/567082055.svg)](https://zenodo.org/badge/latestdoi/567082055)
 [![codecov](https://codecov.io/gh/team-12-csc-510/amatsa/branch/main/graph/badge.svg?token=R5G1DMNTJV)](https://codecov.io/gh/team-12-csc-510/amatsa)
 [![Commit Acitivity](https://img.shields.io/github/commit-activity/m/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
-[![Issues](https://img.shields.io/github/issues/VSangarya/AMATSA?color=red)](https://github.com/VSangarya/AMATSA/issues)
-[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/pulse)
+[![Issues](https://img.shields.io/github/issues-closed/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
+[![Issues](https://img.shields.io/github/issues/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa)
+[![Contributors](https://img.shields.io/github/contributors/team-12-csc-510/amatsa)](https://github.com/team-12-csc-510/amatsa/graphs/contributors)
 [![License](https://img.shields.io/github/license/VSangarya/AMATSA)](LICENSE)
 ![Languages](https://img.shields.io/github/languages/count/VSangarya/AMATSA)
 [![Code Size](https://img.shields.io/github/languages/code-size/team-12-csc-510/amatsa)](src)
@@ -114,9 +115,7 @@ pip install -e .
 
 - A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
 
-### Improved Dashboard
-
-- A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
+https://user-images.githubusercontent.com/112341004/205795229-82140d7e-74bc-4ac9-95a8-7c208c4621cf.mp4
 
 ### Code formatter and Style Check
 
@@ -144,7 +143,13 @@ By pointing these issues out before code review, this allows a code reviewer to 
 
 ## Scaling
 
+### Scaling maximum number of concurrent users
+
 We have achieved a scaling of 10x for the maximum amount of concurrent users. The details can be found [here](https://docs.google.com/document/d/1RdMRLtXNsLXfKQEYGx74gnLFtfKDUw35MHHgc2TtDuA/edit?usp=sharing).
+
+### Realtime data collection scalability
+
+- We realized that the initial time of data collection was somewhere in the vicinity of 31 seconds and for this system to represent a more real world scenario we needed to reduce this time. We were able to reduce this time to 0.5 seconds essentially achieving a scalability factor of 62 asymptotically.
 
 ### ⚙︎📧 Troubleshooting, help and contact information
 
