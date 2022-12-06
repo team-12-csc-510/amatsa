@@ -115,7 +115,7 @@ pip install -e .
 
 - A new and improved dashboard helps the admin to analyze the client system in the detailed manner.
 
-
+https://user-images.githubusercontent.com/112341004/205795229-82140d7e-74bc-4ac9-95a8-7c208c4621cf.mp4
 
 ### Code formatter and Style Check
 
