@@ -30,7 +30,6 @@ from src.utils import get_config
 
 pandas_handler = PandasHandler()
 
-
 load_dotenv()  # take environment variables from .env.
 
 
@@ -40,15 +39,18 @@ def ReadFileMonitoringFile(filename):
     :param filename: name of file containing data to be extracted in the dictionary"""
     file_dict = {}
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", filename)
-    with open(path, "r") as file:
-        file_data = file.readlines()
-        for data in file_data:
-            print(data)
-            data_ls = data.split(" ")
-            if data_ls[1] not in file_dict:
-                file_dict[data_ls[1]] = []
-            file_dict[data_ls[1]].append(data_ls[0])
-    return file_dict
+    if os.path.exists(path):
+        with open(path, "r") as file:
+            file_data = file.readlines()
+            for data in file_data:
+                print(data)
+                data_ls = data.split(" ")
+                if data_ls[1] not in file_dict:
+                    file_dict[data_ls[1]] = []
+                file_dict[data_ls[1]].append(data_ls[0])
+        return file_dict
+    else:
+        return None
 
 
 @measure_energy(handler=pandas_handler)
