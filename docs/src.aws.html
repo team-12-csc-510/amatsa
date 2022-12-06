@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>src.aws package &#8212; AMATSA 1.0.0 documentation</title>
+    <title>src.aws package &#8212; AMATSA v1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -41,15 +41,50 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="src.aws.client.html">src.aws.client package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="src.aws.client.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.aws.client.html#src-aws-client-ses-module">src.aws.client.ses module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="src.aws.client.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.aws.client.html#module-src.aws.client.ses">src.aws.client.ses module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.aws.client.html#src.aws.client.ses.SES"><code class="docutils literal notranslate"><span class="pre">SES</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.aws.client.html#src.aws.client.ses.SES.generate_html_body"><code class="docutils literal notranslate"><span class="pre">SES.generate_html_body()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.aws.client.html#src.aws.client.ses.SES.send_mail"><code class="docutils literal notranslate"><span class="pre">SES.send_mail()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.aws.client.html#module-src.aws.client">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
+<section id="module-src.aws">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.aws" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.aws.AWS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.aws.</span></span><span class="sig-name descname"><span class="pre">AWS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.aws.AWS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.aws.AWSClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.aws.</span></span><span class="sig-name descname"><span class="pre">AWSClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.aws.AWSClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.aws.AWS" title="src.aws.AWS"><code class="xref py py-class docutils literal notranslate"><span class="pre">AWS</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.aws.AWSClient.client">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">client</span></span><a class="headerlink" href="#src.aws.AWSClient.client" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.aws.AWSResource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.aws.</span></span><span class="sig-name descname"><span class="pre">AWSResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.aws.AWSResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.aws.AWS" title="src.aws.AWS"><code class="xref py py-class docutils literal notranslate"><span class="pre">AWS</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="src.aws.AWSResource.resource">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource</span></span><a class="headerlink" href="#src.aws.AWSResource.resource" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -101,7 +136,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2022, Ritwik Tiwari.
+      &copy;2022, Aditya Tewari, Naman Bhagat, Ritwik Tiwari, Saksham Thakur, Shubhender Singh.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>

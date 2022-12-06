@@ -1,6 +1,7 @@
 .DS_Store
 *.pickle
 sphinx/_build
+sphinx/build
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,elasticbeanstalk,pycharm,pycharm+iml,pycharm+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,elasticbeanstalk,pycharm,pycharm+iml,pycharm+all,visualstudiocode

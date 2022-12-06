@@ -8,20 +8,33 @@
 import os
 import sys
 
-sys.path.append(os.path.abspath('../src'))
-
 project = 'AMATSA'
-copyright = '2022, Ritwik Tiwari'
-author = 'Ritwik Tiwari'
-release = '1.0.0'
+copyright = (
+    "2022, Aditya Tewari, Naman Bhagat, Ritwik Tiwari, Saksham Thakur, Shubhender Singh"
+)
+author = "Aditya Tewari, Naman Bhagat, Ritwik Tiwari, Saksham Thakur, Shubhender Singh"
+release = "v1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, '../../src')
+sys.path.insert(0, '../../src/config')
+sys.path.insert(0, '../../src/aws')
+sys.path.insert(0, '../../src/aws/client')
+sys.path.insert(0, '../../src/aws/client')
+
+print(sys.executable)
+
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+]
 
 templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.mypy_cache', '__pycache__']
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
